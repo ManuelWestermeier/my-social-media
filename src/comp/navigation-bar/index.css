@@ -3,7 +3,8 @@
     height: 56px;
     background-color: var(--b);
     overflow: hidden;
-    box-shadow: 0 0 10px 0 var(--a);
+    box-shadow: 0 0 10px 0 var(--a),
+        0 0 10px -2px var(--a) inset;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
