@@ -1,8 +1,11 @@
 .navigation-bar {
     width: 100%;
     height: 56px;
-    background-color: var(--a);
+    background-color: var(--b);
     overflow: hidden;
+    box-shadow: 0 0 10px 0 var(--a);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .navigation-bar .content {
@@ -15,19 +18,21 @@
 }
 
 .navigation-bar a {
-    transition: all 0.3s ease-in-out;
-    border: 2px solid transparent;
+    transition: all 0.3s linear;
     width: 30px;
     height: 30px;
+    padding: 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 50%;
 }
 
 .navigation-bar .active {
     transform: scale(1.3);
     text-shadow: 0 0 10px var(--a);
-    border: 2px solid var(--c);
-    border-radius: 50%;
+    box-shadow: 0 0 5px 1px var(--a),
+        0 0 10px -1px var(--a) inset;
 }

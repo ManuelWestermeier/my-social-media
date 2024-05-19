@@ -18,13 +18,7 @@ app.post('/upload', upload.single('video'), (req, res) => {
 
     res.json({
         message: 'File uploaded successfully.',
-        file: {
-            originalName: req.file.originalname,
-            filename: req.file.filename,
-            path: req.file.path,
-            size: req.file.size,
-            mimetype: req.file.mimetype,
-        }
+        id: req.file.filename,
     });
 });
 
