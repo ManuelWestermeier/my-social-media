@@ -23,3 +23,12 @@ body {
   margin: auto;
   box-shadow: 0 0 10px -2px var(--a);
 }
+
+ul,
+ol {
+  margin-left: 20px;
+}
+
+.p10 {
+  padding: 10px;
+}

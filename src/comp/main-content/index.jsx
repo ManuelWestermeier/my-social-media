@@ -8,6 +8,7 @@ import AbonnementsPage from '../../pages/abonnements'
 import ProfilePage from '../../pages/profile'
 
 function MainContent() {
+  const [userData, setUserData] = useFetchUserData()
   return (
     <main className='main-content'>
       <Routes>
