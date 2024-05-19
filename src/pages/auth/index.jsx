@@ -3,7 +3,7 @@ import "./index.css"
 import Login from './login'
 import CreateAccount from './create-account'
 
-function AuthPage({ isAuth }) {
+function AuthPage({ isAuth, setAuth }) {
     const [isLoginPage, setIsLoginPage] = useState(true)
     var [isAuth, setIsAuth] = useState(isAuth)
 

@@ -10,8 +10,8 @@ import useFetchUserData from "../../hooks/fetch-user-data";
 import AuthPage from '../../pages/auth';
 import UserPage from '../../pages/user';
 
-function MainContent() {
-  const [userData, setUserData, isAuth] = useFetchUserData();
+function MainContent({ auth, setAuth }) {
+  const [userData, setUserData, isAuth] = useFetchUserData(auth);
 
   return (
     <main className="main-content">
@@ -20,18 +20,18 @@ function MainContent() {
         <Route path="/vid" element={<VidPage />} />
         <Route
           path="/upload"
-          element={isAuth ? <UploadPage /> : <AuthPage isAuth={isAuth} />}
+          element={isAuth ? <UploadPage /> : <AuthPage setAuth={setAuth} isAuth={isAuth} />}
         />
         <Route
           path="/abonnements"
-          element={isAuth ? <AbonnementsPage userData={userData} /> : <AuthPage isAuth={isAuth} />}
+          element={isAuth ? <AbonnementsPage userData={userData} /> : <AuthPage setAuth={setAuth} isAuth={isAuth} />}
         />
         <Route
           path="/profile"
-          element={isAuth ? <ProfilePage /> : <AuthPage isAuth={isAuth} />}
+          element={isAuth ? <ProfilePage /> : <AuthPage setAuth={setAuth} isAuth={isAuth} />}
         />
         <Route path="/user/:id" element={<UserPage />} />
-        <Route path="/auth" element={<AuthPage isAuth={isAuth} />} />
+        <Route path="/auth" element={<AuthPage setAuth={setAuth} isAuth={isAuth} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </main>
