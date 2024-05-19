@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-function Login({ }) {
+function Login({ setAuth }) {
     const userNameInput = useRef()
     const passwordInput = useRef()
 
@@ -10,7 +10,7 @@ function Login({ }) {
         const userName = userNameInput.current?.value
         const password = passwordInput.current?.value
 
-        
+
     }
 
     return (

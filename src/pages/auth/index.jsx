@@ -7,7 +7,7 @@ function AuthPage({ isAuth, setAuth }) {
     const [isLoginPage, setIsLoginPage] = useState(true)
     var [isAuth, setIsAuth] = useState(isAuth)
 
-    if (!isAuth) {
+    if (isAuth) {
         return <div className='p10'>
             <p>You are alread authenticated</p>
             <button onClick={e => setIsAuth(true)}>
@@ -18,16 +18,16 @@ function AuthPage({ isAuth, setAuth }) {
 
     return <div className='p10' >
         <div className="slide-change">
-            <button className={isLoginPage && 'active'} onClick={e => setIsLoginPage(true)}>
+            <button className={(isLoginPage && 'active').toString()} onClick={e => setIsLoginPage(true)}>
                 Login
             </button>
-            <button className={!isLoginPage && 'active'} onClick={e => setIsLoginPage(false)}>
+            <button className={(!isLoginPage && 'active').toString()} onClick={e => setIsLoginPage(false)}>
                 Create Account
             </button>
         </div>
         {isLoginPage ?
-            <Login /> :
-            <CreateAccount />}
+            <Login setAuth={setAuth} /> :
+            <CreateAccount setAuth={setAuth} />}
     </div>
 }
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-function CreateAccount({ }) {
+function CreateAccount({ setAuth }) {
     const userNameInput = useRef()
     const passwordInput = useRef()
 

@@ -5,7 +5,7 @@ export default function useAuth() {
     const [auth, setAuth] = useLocalStorage("social-media-auth-data", false)
 
     useEffect(() => {
-        log(auth)
+        log("authenticated", auth)
     }, [auth])
 
     return [auth, setAuth]
