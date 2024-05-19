@@ -8,15 +8,19 @@ function ProfilePage({ userData, setUserData }) {
   }
 
   const userName = userData.name;
-  const userUrl = `/profile/${userData.id}`;
-  const userDescription = userData.name;
+  const userUrl = `/user/${userData.id}`;
+  const userDescription = userData.description;
 
   return (
     <>
       <p>{userName}</p>
       <p>
-        <Link target='_blank' to={userUrl} >{userUrl}</Link>
+        <Link to={userUrl} >{userUrl}</Link>
       </p>
+      <textarea value={userDescription}></textarea>
+      <Link to="/abonnements">
+        Abbonements
+      </Link>
     </>
   )
 }

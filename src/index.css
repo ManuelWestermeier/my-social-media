@@ -10,6 +10,7 @@
   padding: 0;
   font-family: var(--font);
   fill: var(--c);
+  outline: none;
 }
 
 html {
@@ -31,4 +32,31 @@ ol {
 
 .p10 {
   padding: 10px;
+}
+
+button,
+input,
+section,
+textarea {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 2px solid var(--a);
+  background-color: var(--b);
+  color: var(--c);
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--a);
+  color: var(--b);
+}
+
+.active,
+:focus {
+  box-shadow: 0 0 20px -2px var(--a);
+}
+
+::placeholder {
+  color: var(--c);
 }
