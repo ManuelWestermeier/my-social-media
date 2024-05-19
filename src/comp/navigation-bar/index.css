@@ -1,0 +1,33 @@
+.navigation-bar {
+    width: 100%;
+    height: 56px;
+    background-color: var(--a);
+    overflow: hidden;
+}
+
+.navigation-bar .content {
+    height: 56px;
+    max-width: 300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation-bar a {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-bar .active {
+    transform: scale(1.3);
+    text-shadow: 0 0 10px var(--a);
+    border: 2px solid var(--c);
+    border-radius: 50%;
+}
