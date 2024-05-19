@@ -11,6 +11,11 @@ const upload = createUploadMulter(storage)
 
 app.use(cors({ origin: "*" }))
 
+app.get("/create-user", (req, res) => {
+    const searchParams = (new URL("http:localhost/" + req.url)).searchParams
+    
+})
+
 app.post('/upload', upload.single('video'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded or invalid file type.');
