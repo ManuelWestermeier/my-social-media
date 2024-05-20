@@ -13,7 +13,8 @@ app.use(cors({ origin: "*" }))
 
 app.get("/create-user", (req, res) => {
     const searchParams = (new URL("http:localhost/" + req.url)).searchParams
-    
+    console.log(searchParams);
+    res.json({})
 })
 
 app.post('/upload', upload.single('video'), (req, res) => {

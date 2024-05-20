@@ -3,9 +3,19 @@ import { useNavigate } from 'react-router-dom'
 
 async function createUser({ userName, password }) {
     try {
-        var res = await fetch(apiUrl + "/create-user")
+        const url = new URL(apiUrl + "/create-user")
+        url.searchParams.set("user", userName)
+        url.searchParams.set("password", password)
 
-        return [true]
+        const res = await fetch(url)
+        if (!res.ok) {
+            return [false, "No Internet"]
+        }
+
+        const jsonRes = await res.json()
+        log(jsonRes) 
+
+        return [true, { user: userName, password: password }]
     } catch (error) {
         return [false, error]
     }
