@@ -11,6 +11,8 @@
   font-family: var(--font);
   fill: var(--c);
   outline: none;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 html {
