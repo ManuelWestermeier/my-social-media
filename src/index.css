@@ -37,7 +37,8 @@ ol {
 button,
 input,
 section,
-textarea {
+textarea,
+.btn {
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
@@ -46,7 +47,8 @@ textarea {
   color: var(--c);
 }
 
-button {
+button,
+.btn {
   cursor: pointer;
   background-color: var(--a);
   color: var(--b);
@@ -59,4 +61,8 @@ button {
 
 ::placeholder {
   color: var(--c);
+}
+
+a {
+  text-decoration: none;
 }

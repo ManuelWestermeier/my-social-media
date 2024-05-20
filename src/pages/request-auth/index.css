@@ -1,7 +1,8 @@
-.request-auth {
+.request-auth-page {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+    height: calc(100dvh - 56px);
 }

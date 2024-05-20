@@ -1,18 +1,11 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./index.css";
-import AuthPage from "../auth";
 
-function RequestAuthPage({ isAuth, setAuth }) {
-  const [isOnAuthPage, setIsOnAuthPage] = useState(false);
-
-  if (isOnAuthPage) {
-    return <AuthPage isAuth={isAuth} setAuth={setAuth} />;
-  }
-
+function RequestAuthPage() {
   return (
-    <div className="request-auth">
-      <p>You Have to authenticate first</p>
-      <button onClick={(e) => setIsOnAuthPage(true)}>Authenticate</button>
+    <div className="request-auth-page">
+      <h3>You have to authenticate first</h3>
+      <Link className="btn" to="/auth">authenticate</Link>
     </div>
   );
 }
