@@ -8,10 +8,6 @@ import uploadProfileImage from "../../utils/upload-porfile-image";
 function ProfilePage({ userData, setUserData, auth }) {
   const [isLoading, setIsLoading] = useState(false);
 
-  if (!userData || isLoading) {
-    return <Loading />;
-  }
-
   const textAreaRef = useRef();
 
   useEffect(() => {
@@ -20,6 +16,10 @@ function ProfilePage({ userData, setUserData, auth }) {
       textarea.style.height = `${textarea.scrollHeight}px`;
     } catch (error) {}
   }, [textAreaRef]);
+
+  if (!userData || isLoading) {
+    return <Loading />;
+  }
 
   const onValueChange = (change) => {
     return (e) => {

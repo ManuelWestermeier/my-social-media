@@ -16,7 +16,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   const textAreaRef = useRef();
 
   const subscribed = useMemo(() => {
-    return authUserData.abonnements.includes(id);
+    return authUserData?.abonnements?.includes(id);
   }, [authUserData, userData]);
 
   useEffect(() => {
@@ -65,7 +65,8 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
             setAuthUserData,
             setFollower,
             auth,
-            id
+            id,
+            navigate
           )}
         >
           {subscribed ? "Unsubscribe" : "Subscribe"}

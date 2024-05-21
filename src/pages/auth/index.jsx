@@ -10,7 +10,7 @@ function AuthPage({ isAuth, setAuth }) {
     if (isAuth) {
         return <div className='p10'>
             <p>You are alread authenticated</p>
-            <button onClick={e => setIsAuth(true)}>
+            <button onClick={e => setIsAuth(false)}>
                 Confirm
             </button>
         </div>

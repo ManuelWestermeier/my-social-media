@@ -5,9 +5,14 @@ export default function toggleSubscribe(
   setAuthUserData,
   setFollower,
   auth,
-  id
+  id,
+  navigate
 ) {
   return () => {
+    if (!auth) {
+      return navigate("/auth");
+    }
+
     fetch(getRequestUrl("/toggle-subscription", { ...auth, subscription: id }));
 
     if (subscribed) {
