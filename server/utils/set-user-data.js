@@ -2,6 +2,10 @@ import { login } from "./login.js";
 import fs from "fs";
 
 export const setUserData = (req, res) => {
+    if (req.url.length > 3000) {
+        return res.send("too long url");
+    }
+
     var isAuth = login(req);
 
     if (!isAuth[0]) return res.send("Not authorized")
