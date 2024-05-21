@@ -1,10 +1,15 @@
 import fs from 'fs';
+import securifyPath from './securify-path';
 
 const getPublicUserData = (req, res) => {
     const user = (new URL("http://localhost" + req.url)).searchParams.get("user");
 
     if (!user) {
         return res.status(404).send("user-not-found");
+    }
+
+    if (!securifyPath(user)) {
+        return res.send("wrong user path");
     }
 
     const userRootPath = `data/user/${user}/`

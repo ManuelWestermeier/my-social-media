@@ -8,7 +8,7 @@ import AbonnementsPage from "../../pages/abonnements";
 import ProfilePage from "../../pages/profile";
 import useFetchUserData from "../../hooks/fetch-user-data";
 import AuthPage from "../../pages/auth";
-import UserPage from "../../pages/user";
+import UserPage from "../../pages/user-profile";
 import RequestAuthPage from "../../pages/request-auth";
 
 function MainContent({ auth, setAuth }) {

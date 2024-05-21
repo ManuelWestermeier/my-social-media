@@ -6,6 +6,7 @@ export const getUserData = (req, res) => {
 
     if (isAuth[0]) {
         const user = (new URL("http:localhost/" + req.url)).searchParams.get("user")
+
         const userRootPath = `data/user/${user}/`
 
         const userData = JSON.parse(fs.readFileSync(userRootPath + "data.txt", "utf-8"))
