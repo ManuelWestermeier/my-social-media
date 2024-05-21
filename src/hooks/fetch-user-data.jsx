@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import getRequestUrl from "../utils/get-request-url";
 
@@ -22,7 +22,7 @@ export default function useFetchUserData(auth) {
         });
       } catch (error) {}
     }
-  }, []);
+  }, [auth]);
 
   return [userData, setUserData, auth];
 }
