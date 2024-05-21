@@ -3,6 +3,8 @@ import { createDiskStorage } from './utils/create-disk-storage.js';
 import { createUploadMulter } from './utils/create-upload-multer.js';
 import cors from "cors"
 import securifyPath from './utils/securify-path.js';
+import fs from "fs";
+import { hashPassword } from './utils/hash.js';
 
 const app = express();
 const port = 3000;
@@ -16,8 +18,9 @@ app.get("/create-user", (req, res) => {
     const searchParams = (new URL("http:localhost/" + req.url)).searchParams
     const user = searchParams.get("user")
     const password = searchParams.get("password")
+    const email = searchParams.get("email")
 
-    if (!user || !password) {
+    if (!user || !password || !email) {
         return res.json({ error: "No user or password set" })
     }
 
@@ -25,7 +28,21 @@ app.get("/create-user", (req, res) => {
         return res.json({ error: "Username have to include alphabetic characters and numbers characters and _-" })
     }
 
-    const userRootPath = `${user}`
+    const userRootPath = `data/user/${user}/`
+
+    if (fs.existsSync(userRootPath)) {
+        return res.json({ error: `Username ${user} already exists` })
+    }
+
+    const userData = {
+
+    }
+
+    fs.mkdirSync(userRootPath, { recursive: true })
+    fs.writeFileSync(userRootPath + "password.txt", hashPassword(password), "utf-8")
+    fs.writeFileSync(userRootPath + "email.txt", email, "utf-8")
+    fs.writeFileSync(userRootPath + "data.txt", JSON.stringify(userData), "utf-8")
+
 })
 
 app.post('/upload', upload.single('video'), (req, res) => {
