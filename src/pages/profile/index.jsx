@@ -44,7 +44,7 @@ function ProfilePage({ userData, setUserData, auth }) {
   };
 
   const userName = userData.name;
-  const userUrl = `/user/${userData.id}`;
+  const userUrl = `/profile/${userData.id}`;
   const iconUrl = `${apiUrl}/img/profile/${userData.id}`;
   const userDescription = userData.description;
 

@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
 import getRequestUrl from "../../utils/get-request-url";
+import toggleSubscribe from "../../utils/toggle-subscribe";
+import "./index.css";
 
-function UserPage({ userData: authUserData }) {
+function UserPage({ authUserData, setAuthUserData }) {
   const { id } = useParams();
 
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
@@ -12,7 +14,7 @@ function UserPage({ userData: authUserData }) {
 
   const textAreaRef = useRef();
 
-  const isSubscribing = useMemo(() => {
+  const subscribed = useMemo(() => {
     return authUserData.abonnements.includes(id);
   }, [authUserData, userData]);
 
@@ -50,13 +52,10 @@ function UserPage({ userData: authUserData }) {
       <div className="footer">
         <p>{userData.follower} Follower</p>
         <button
-          onClick={(e) => {
-            if (isSubscribing) {
-            } else {
-            }
-          }}
+          className={subscribed ? "active " : "" + "subscribe-btn"}
+          onClick={toggleSubscribe(subscribed, setAuthUserData, id)}
         >
-          {isSubscribing ? "Unsubscribe" : "Subscribe"}
+          {subscribed ? "Unsubscribe" : "Subscribe"}
         </button>
       </div>
       <textarea
