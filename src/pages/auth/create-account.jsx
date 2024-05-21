@@ -21,7 +21,7 @@ async function createUser({ userName, password, email }) {
       return [false, jsonRes.error];
     }
 
-    return [true, { user: userName, password: password }];
+    return [true, { user: userName, password, email }];
   } catch (error) {
     return [false, error];
   }
@@ -75,7 +75,7 @@ function CreateAccount({ setAuth }) {
       />
       <input
         name="password"
-        type="password"
+        type="text"
         ref={passwordInput}
         placeholder="Password..."
       />
