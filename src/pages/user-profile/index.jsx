@@ -52,7 +52,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
       <div className="footer">
         <p>{userData.follower} Follower</p>
         <button
-          className={subscribed ? "active " : "" + "subscribe-btn"}
+          className={(subscribed ? "not-active " : "") + "subscribe-btn"}
           onClick={toggleSubscribe(subscribed, setAuthUserData, auth, id)}
         >
           {subscribed ? "Unsubscribe" : "Subscribe"}

@@ -1,4 +1,4 @@
-.subscribe-btn:not(:has(.active)) {
+.subscribe-btn.not-active {
     background-color: var(--b);
     color: var(--a);
 }
