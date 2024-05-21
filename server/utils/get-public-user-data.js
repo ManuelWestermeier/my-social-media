@@ -1,5 +1,5 @@
 import fs from 'fs';
-import securifyPath from './securify-path';
+import securifyPath from './securify-path.js';
 
 const getPublicUserData = (req, res) => {
     const user = (new URL("http://localhost" + req.url)).searchParams.get("user");

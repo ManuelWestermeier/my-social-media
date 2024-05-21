@@ -1,5 +1,5 @@
-import { login } from "./login";
-import securifyPath from "./securify-path";
+import { login } from "./login.js";
+import securifyPath from "./securify-path.js";
 import fs from "fs"
 
 export default function toggleSubscribtion(req, res) {
