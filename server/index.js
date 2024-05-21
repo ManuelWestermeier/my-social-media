@@ -7,6 +7,7 @@ import { login } from './utils/login.js';
 import { getUserData } from './utils/get-user-data.js';
 import { sendProfileImage } from './utils/send-profile-image.js';
 import { setUserData } from './utils/set-user-data.js';
+import uploadProfileImage from './utils/upload-profile-image.js';
 
 const app = express();
 const port = 3000;
@@ -41,12 +42,6 @@ app.post('/upload', upload.single('video'), (req, res) => {
 });
 */
 
-app.post("/upload-profile-image", profileImageUpload.single('image'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).send('No file uploaded or invalid file type.');
-    }
-
-    res.json("Sucessfully uploaded");
-});
+app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
 
 app.listen(port);

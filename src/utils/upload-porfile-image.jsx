@@ -34,8 +34,11 @@ export default function uploadProfileImage(setIsLoading, auth) {
 
         setIsLoading(false);
       } catch (error) {
+        alert(error);
         setIsLoading(false);
       }
+
+      log(e.target)
     };
 
     fileInput.click();

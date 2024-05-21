@@ -11,7 +11,7 @@ const fileFilter = (req, file, cb) => {
     if (file.mimetype === 'image/jpeg') {
         cb(null, true);
     } else {
-        cb(new Error('Only JPG files are allowed!'), false);
+        cb(null, false);
     }
 };
 
