@@ -46,10 +46,7 @@ app.post("/upload-profile-image", profileImageUpload.single('image'), (req, res)
         return res.status(400).send('No file uploaded or invalid file type.');
     }
 
-    res.json({
-        message: 'File uploaded successfully.',
-        id: req.file.filename,
-    });
+    res.json("Sucessfully uploaded");
 });
 
 app.listen(port);
