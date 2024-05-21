@@ -19,10 +19,6 @@ export const setUserData = (req, res) => {
 
     var change = searchParams.get("change")
 
-    if (!userData[change]) {
-        return res.send("not existing parameter")
-    }
-
     if (change == "name") {
         const name = searchParams.get("name")
         userData.name = name.length > 50 ? "too long" : name
