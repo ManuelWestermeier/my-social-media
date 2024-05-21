@@ -10,18 +10,17 @@ export default function useFetchUserData(auth) {
 
   useEffect(() => {
     //is the client is authenticated fetch the userdata from the server
-    if (!!auth) {
-      try {
-        fetch(getRequestUrl("/get-user-data", auth)).then(async (response) => {
-          if (!response.ok) return;
+    if (!auth) return;
+    
+    try {
+      fetch(getRequestUrl("/get-user-data", auth)).then(async (response) => {
+        if (!response.ok) return;
 
-          const userDataFromServer = await response.json();
+        const userDataFromServer = await response.json();
 
-          if (!userDataFromServer.error)
-            setUserData(userDataFromServer.userData);
-        });
-      } catch (error) {}
-    }
+        if (!userDataFromServer.error) setUserData(userDataFromServer.userData);
+      });
+    } catch (error) {}
   }, [auth]);
 
   return [userData, setUserData, auth];
