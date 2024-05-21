@@ -6,6 +6,7 @@ import { createUser } from './utils/create-user.js';
 import { login } from './utils/login.js';
 import { getUserData } from './utils/get-user-data.js';
 import { sendProfileImage } from './utils/send-profile-image.js';
+import { setUserData } from './utils/set-user-data.js';
 
 const app = express();
 const port = 3000;
@@ -20,6 +21,10 @@ app.get("/create-user", createUser)
 app.get("/login", (req, res) => res.json(login(req)))
 
 app.get("/get-user-data", getUserData)
+
+app.get("/get-user-data", getUserData)
+
+app.get("/set-user-data", setUserData)
 
 app.get("/img/profile/:id", sendProfileImage)
 

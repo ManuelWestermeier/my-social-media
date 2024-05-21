@@ -24,23 +24,5 @@ export default function useFetchUserData(auth) {
     }
   }, []);
 
-  return [
-    userData,
-    (_new) => {
-      setUserData(_new);
-
-      //set the new user data
-      fetch(getRequestUrl("/set-user-data", {  })).then(
-        async (response) => {
-          if (!response.ok) return;
-
-          const userDataFromServer = await response.json();
-
-          if (!userDataFromServer.error)
-            setUserData(userDataFromServer.userData);
-        }
-      );
-    },
-    auth,
-  ];
+  return [userData, setUserData, auth];
 }

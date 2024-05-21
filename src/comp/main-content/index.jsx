@@ -37,7 +37,11 @@ function MainContent({ auth, setAuth }) {
           path="/profile"
           element={
             isAuth ? (
-              <ProfilePage userData={userData} setUserData={setUserData} />
+              <ProfilePage
+                auth={auth}
+                userData={userData}
+                setUserData={setUserData}
+              />
             ) : (
               <RequestAuthPage />
             )
