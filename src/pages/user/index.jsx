@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
@@ -12,9 +12,13 @@ function UserPage({ userData: authUserData }) {
 
   const textAreaRef = useRef();
 
+  const isSubscribing = useMemo(() => {
+    return authUserData.abonnements.includes(id);
+  }, [authUserData, userData]);
+
   useEffect(() => {
-    const textarea = textAreaRef.current
-    textarea.style.height = `${textarea.scrollHeight}px`
+    const textarea = textAreaRef.current;
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }, [textAreaRef]);
 
   //fetch the data
@@ -43,15 +47,24 @@ function UserPage({ userData: authUserData }) {
         <img src={iconUrl} alt="Icon" title="click to upload" />
         <h3>{userName}</h3>
       </div>
+      <div className="footer">
+        <p>{userData.follower} Follower</p>
+        <button
+          onClick={(e) => {
+            if (isSubscribing) {
+            } else {
+            }
+          }}
+        >
+          {isSubscribing ? "Unsubscribe" : "Subscribe"}
+        </button>
+      </div>
       <textarea
         value={userDescription}
         title="max:1500 characteracters"
         readOnly
         ref={textAreaRef}
       ></textarea>
-      <div className="footer">
-        <button>Subscribe</button>
-      </div>
     </div>
   );
 }

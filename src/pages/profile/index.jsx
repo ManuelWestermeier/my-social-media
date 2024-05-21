@@ -68,6 +68,9 @@ function ProfilePage({ userData, setUserData, auth }) {
         </h3>
       </div>
       <p>
+        {userData.follower} Follower
+      </p>
+      <p>
         <Link to={userUrl}>{userUrl}</Link>
       </p>
       <textarea

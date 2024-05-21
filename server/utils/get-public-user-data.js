@@ -19,7 +19,7 @@ const getPublicUserData = (req, res) => {
         videos: userData.videos,
         description: userData.description,
         name: userData.name,
-        followers: userData.followers,
+        follower: userData.follower,
     })
 }
 
