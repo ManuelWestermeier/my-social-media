@@ -15,8 +15,6 @@ async function logIn({ userName, password, email }) {
 
     const jsonRes = await res.json();
 
-    console.log(jsonRes);
-
     if (!jsonRes[0]) {
       return [false, jsonRes[1]];
     }

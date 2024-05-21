@@ -15,8 +15,6 @@ async function createUser({ userName, password, email }) {
 
     const jsonRes = await res.json();
 
-    console.log(jsonRes);
-
     if (jsonRes.error) {
       return [false, jsonRes.error];
     }
