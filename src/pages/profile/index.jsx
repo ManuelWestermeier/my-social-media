@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Loading from "../../comp/loading";
 import { Link } from "react-router-dom";
 import "./index.css";
@@ -11,6 +11,13 @@ function ProfilePage({ userData, setUserData, auth }) {
   if (!userData || isLoading) {
     return <Loading />;
   }
+
+  const textAreaRef = useRef();
+
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [textAreaRef]);
 
   const onValueChange = (change) => {
     return (e) => {
@@ -64,6 +71,7 @@ function ProfilePage({ userData, setUserData, auth }) {
         <Link to={userUrl}>{userUrl}</Link>
       </p>
       <textarea
+        ref={textAreaRef}
         value={userDescription}
         title="max:1500 characteracters"
         onChange={onValueChange("description")}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
@@ -9,6 +9,13 @@ function UserPage({ userData: authUserData }) {
 
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
   const navigate = useNavigate();
+
+  const textAreaRef = useRef();
+
+  useEffect(() => {
+    const textarea = textAreaRef.current
+    textarea.style.height = `${textarea.scrollHeight}px`
+  }, [textAreaRef]);
 
   //fetch the data
   useEffect(() => {
@@ -40,6 +47,7 @@ function UserPage({ userData: authUserData }) {
         value={userDescription}
         title="max:1500 characteracters"
         readOnly
+        ref={textAreaRef}
       ></textarea>
       <div className="footer">
         <button>Subscribe</button>
