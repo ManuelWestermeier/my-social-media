@@ -6,7 +6,7 @@ import getRequestUrl from "../../utils/get-request-url";
 import toggleSubscribe from "../../utils/toggle-subscribe";
 import "./index.css";
 
-function UserPage({ authUserData, setAuthUserData }) {
+function UserPage({ authUserData, setAuthUserData, auth }) {
   const { id } = useParams();
 
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
@@ -53,7 +53,7 @@ function UserPage({ authUserData, setAuthUserData }) {
         <p>{userData.follower} Follower</p>
         <button
           className={subscribed ? "active " : "" + "subscribe-btn"}
-          onClick={toggleSubscribe(subscribed, setAuthUserData, id)}
+          onClick={toggleSubscribe(subscribed, setAuthUserData, auth, id)}
         >
           {subscribed ? "Unsubscribe" : "Subscribe"}
         </button>

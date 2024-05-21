@@ -1,27 +1,25 @@
-export default function toggleSubscribe(subscribed, setAuthUserData, id) {
+import getRequestUrl from "./get-request-url";
+
+export default function toggleSubscribe(subscribed, setAuthUserData, auth, id) {
   return () => {
-    var newData;
+    fetch(getRequestUrl("/toggle-subscription", { ...auth, subscription: id }));
 
     if (subscribed) {
       //unsubscribe
       setAuthUserData((old) => {
-        newData = {
+        return {
           ...old,
           abonnements: old.abonnements.filter((currentId) => currentId !== id),
         };
-        return newData;
       });
     } else {
       //subscribe
       setAuthUserData((old) => {
-        newData = {
+        return {
           ...old,
           abonnements: [...old.abonnements, id],
         };
-        return newData;
       });
     }
-
-    log(newData);
   };
 }

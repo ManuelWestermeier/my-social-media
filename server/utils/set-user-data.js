@@ -6,9 +6,9 @@ export const setUserData = (req, res) => {
         return res.send("too long url");
     }
 
-    var isAuth = login(req);
+    const [isAuth] = login(req);
 
-    if (!isAuth[0]) return res.send("Not authorized")
+    if (!isAuth) return res.send("Not authorized")
 
     const searchParams = (new URL("http:localhost/" + req.url)).searchParams
 

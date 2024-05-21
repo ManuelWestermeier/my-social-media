@@ -9,6 +9,7 @@ import { sendProfileImage } from './utils/send-profile-image.js';
 import { setUserData } from './utils/set-user-data.js';
 import uploadProfileImage from './utils/upload-profile-image.js';
 import getPublicUserData from './utils/get-public-user-data.js';
+import toggleSubscribtion from './utils/toggle-subscription.js';
 
 const app = express();
 const port = 3000;
@@ -32,18 +33,7 @@ app.get("/img/profile/:id", sendProfileImage)
 
 app.get("/get-public-user-data", getPublicUserData)
 
-/*
-app.post('/upload', upload.single('video'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).send('No file uploaded or invalid file type.');
-    }
-
-    res.json({
-        message: 'File uploaded successfully.',
-        id: req.file.filename,
-    });
-});
-*/
+app.get("/toggle-subscription", toggleSubscribtion)
 
 app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
 

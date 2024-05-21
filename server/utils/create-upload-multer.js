@@ -3,7 +3,7 @@ import { login } from './login.js';
 
 // Multer file filter to allow only JPG files
 const fileFilter = (req, file, cb) => {
-    if (!login(req)) {
+    if (!login(req)[0]) {
         return cb(null, false);
     }
 
