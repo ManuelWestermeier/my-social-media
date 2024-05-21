@@ -28,7 +28,8 @@ export const createUser = (req, res) => {
         videos: [],
         description: "Hello\nI'm new",
         name: user,
-        id: user
+        id: user,
+        follower: 0
     }
 
     fs.mkdirSync(userRootPath, { recursive: true })
