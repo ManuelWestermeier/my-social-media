@@ -19,8 +19,10 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   }, [authUserData, userData]);
 
   useEffect(() => {
-    const textarea = textAreaRef.current;
-    textarea.style.height = `${textarea.scrollHeight}px`;
+    try {
+      const textarea = textAreaRef.current;
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    } catch (error) {}
   }, [textAreaRef]);
 
   //fetch the data

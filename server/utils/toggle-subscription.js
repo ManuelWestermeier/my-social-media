@@ -8,7 +8,7 @@ export default function toggleSubscribtion(req, res) {
     }
 
     const subscription =
-        (new URL("http://localhost" + req.URL))
+        (new URL("http://localhost" + req.url))
             .searchParams.get("subscription")
 
     if (!securifyPath(subscription)) {
@@ -20,6 +20,7 @@ export default function toggleSubscribtion(req, res) {
     if (fs.existsSync(subscriptionUserDataPath)) {
         return res.send("Subscription Not found")
     }
+
 
     //read
 

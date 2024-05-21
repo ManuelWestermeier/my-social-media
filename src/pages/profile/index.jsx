@@ -15,8 +15,10 @@ function ProfilePage({ userData, setUserData, auth }) {
   const textAreaRef = useRef();
 
   useEffect(() => {
-    const textarea = textAreaRef.current;
-    textarea.style.height = `${textarea.scrollHeight}px`;
+    try {
+      const textarea = textAreaRef.current;
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    } catch (error) {}
   }, [textAreaRef]);
 
   const onValueChange = (change) => {
@@ -67,9 +69,7 @@ function ProfilePage({ userData, setUserData, auth }) {
           />
         </h3>
       </div>
-      <p>
-        {userData.follower} Follower
-      </p>
+      <p>{userData.follower} Follower</p>
       <p>
         <Link to={userUrl}>{userUrl}</Link>
       </p>
