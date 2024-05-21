@@ -1,0 +1,37 @@
+.abonnement-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.abonnement-list .abonnement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.abonnement-list .abonnement img {
+    object-fit: contain;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    transform: scale(2);
+}
+
+.abonnement-list .abonnement:hover img {
+    transform: scale(1.2);
+}
+
+.abonnement-list .abonnement:hover {
+    box-shadow: 0 0 20px -2px var(--a);
+}

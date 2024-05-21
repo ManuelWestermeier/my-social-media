@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
@@ -10,6 +10,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   const { id } = useParams();
 
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
+  const [follower, setFollower] = useState();
   const navigate = useNavigate();
 
   const textAreaRef = useRef();
@@ -37,6 +38,10 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
     } catch (error) {}
   }, []);
 
+  useEffect(() => {
+    setFollower(userData.follower);
+  }, [userData]);
+
   if (!userData) {
     return <Loading />;
   }
@@ -52,10 +57,16 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         <h3>{userName}</h3>
       </div>
       <div className="footer">
-        <p>{userData.follower} Follower</p>
+        <p>{follower} Follower</p>
         <button
           className={(subscribed ? "not-active " : "") + "subscribe-btn"}
-          onClick={toggleSubscribe(subscribed, setAuthUserData, auth, id)}
+          onClick={toggleSubscribe(
+            subscribed,
+            setAuthUserData,
+            setFollower,
+            auth,
+            id
+          )}
         >
           {subscribed ? "Unsubscribe" : "Subscribe"}
         </button>

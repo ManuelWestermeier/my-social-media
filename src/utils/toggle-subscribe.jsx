@@ -1,6 +1,12 @@
 import getRequestUrl from "./get-request-url";
 
-export default function toggleSubscribe(subscribed, setAuthUserData, auth, id) {
+export default function toggleSubscribe(
+  subscribed,
+  setAuthUserData,
+  setFollower,
+  auth,
+  id
+) {
   return () => {
     fetch(getRequestUrl("/toggle-subscription", { ...auth, subscription: id }));
 
@@ -12,6 +18,8 @@ export default function toggleSubscribe(subscribed, setAuthUserData, auth, id) {
           abonnements: old.abonnements.filter((currentId) => currentId !== id),
         };
       });
+
+      setFollower((old) => old - 1);
     } else {
       //subscribe
       setAuthUserData((old) => {
@@ -20,6 +28,8 @@ export default function toggleSubscribe(subscribed, setAuthUserData, auth, id) {
           abonnements: [...old.abonnements, id],
         };
       });
+
+      setFollower((old) => old + 1);
     }
   };
 }

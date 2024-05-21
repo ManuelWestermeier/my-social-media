@@ -10,6 +10,7 @@ import { setUserData } from './utils/set-user-data.js';
 import uploadProfileImage from './utils/upload-profile-image.js';
 import getPublicUserData from './utils/get-public-user-data.js';
 import toggleSubscribtion from './utils/toggle-subscription.js';
+import getUserName from './utils/get-user-name.js';
 
 const app = express();
 const port = 3000;
@@ -32,6 +33,8 @@ app.get("/set-user-data", setUserData)
 app.get("/img/profile/:id", sendProfileImage)
 
 app.get("/get-public-user-data", getPublicUserData)
+
+app.get("/get-user-name", getUserName)
 
 app.get("/toggle-subscription", toggleSubscribtion)
 
