@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Loading from "../../comp/loading";
 import { Link } from "react-router-dom";
 import "./index.css";
 import getRequestUrl from "../../utils/get-request-url";
+import uploadProfileImage from "../../utils/upload-porfile-image";
 
 function ProfilePage({ userData, setUserData, auth }) {
-  if (!userData) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (!userData || isLoading) {
     return <Loading />;
   }
 
@@ -41,7 +44,11 @@ function ProfilePage({ userData, setUserData, auth }) {
   return (
     <div className="profile-page">
       <div className="header">
-        <img src={iconUrl} alt="Icon" />
+        <img
+          onClick={uploadProfileImage(setIsLoading, auth)}
+          src={iconUrl}
+          alt="Icon"
+        />
         <h3>
           <input
             type="text"
@@ -60,7 +67,14 @@ function ProfilePage({ userData, setUserData, auth }) {
         title="max:1500 characteracters"
         onChange={onValueChange("description")}
       ></textarea>
-      <Link to="/abonnements">Abbonements</Link>
+      <div className="footer">
+        <Link className="btn" to="/abonnements">
+          Abbonements
+        </Link>
+        <Link className="btn" to="/upload">
+          Upload new video
+        </Link>
+      </div>
     </div>
   );
 }

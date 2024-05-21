@@ -11,8 +11,8 @@ import { setUserData } from './utils/set-user-data.js';
 const app = express();
 const port = 3000;
 
-const storage = createDiskStorage();
-const upload = createUploadMulter(storage)
+const profileImageStorage = createDiskStorage();
+const profileImageUpload = createUploadMulter(profileImageStorage)
 
 app.use(cors({ origin: "*" }))
 
@@ -28,7 +28,20 @@ app.get("/set-user-data", setUserData)
 
 app.get("/img/profile/:id", sendProfileImage)
 
+/*
 app.post('/upload', upload.single('video'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded or invalid file type.');
+    }
+
+    res.json({
+        message: 'File uploaded successfully.',
+        id: req.file.filename,
+    });
+});
+*/
+
+app.post("/upload-profile-image", profileImageUpload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded or invalid file type.');
     }

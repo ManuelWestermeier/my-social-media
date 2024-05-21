@@ -17,6 +17,12 @@
     gap: 10px;
 }
 
+.profile-page .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .profile-page .header img,
 .profile-page .header a {
     overflow: hidden;

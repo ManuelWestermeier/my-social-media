@@ -1,17 +1,22 @@
 import multer from 'multer';
-import path from 'path';
+import { login } from './login.js';
 
+// Multer file filter to allow only JPG files
+const fileFilter = (req, file, cb) => {
+    if (login(req)) {
+        return cb(new Error('Not auth!'), false);
+    }
+
+    // Accept only JPG files
+    if (file.mimetype === 'image/jpeg') {
+        cb(null, true);
+    } else {
+        cb(new Error('Only JPG files are allowed!'), false);
+    }
+};
+
+// Initialize upload
 export const createUploadMulter = storage => multer({
-    fileFilter: (req, file, cb) => {
-        const filetypes = /mp4|avi|mkv|mov/;
-        const mimetype = filetypes.test(file.mimetype);
-        const extname = filetypes.
-            test(path.extname(file.originalname).toLowerCase());
-
-        if (mimetype && extname) {
-            return cb(null, true);
-        }
-
-        cb(new Error('File upload only supports the following video filetypes - ' + filetypes));
-    },
+    storage,
+    fileFilter
 });
