@@ -47,6 +47,7 @@ textarea,
   border: 2px solid var(--a);
   background-color: var(--b);
   color: var(--c);
+  transition: all 0.3s ease-in-out;
 }
 
 button,
@@ -67,4 +68,5 @@ button,
 
 a {
   text-decoration: none;
+  color: var(--c);
 }

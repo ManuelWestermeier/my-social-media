@@ -35,7 +35,13 @@ function MainContent({ auth, setAuth }) {
         />
         <Route
           path="/profile"
-          element={isAuth ? <ProfilePage /> : <RequestAuthPage />}
+          element={
+            isAuth ? (
+              <ProfilePage userData={userData} setUserData={setUserData} />
+            ) : (
+              <RequestAuthPage />
+            )
+          }
         />
         <Route path="/user/:id" element={<UserPage />} />
         <Route

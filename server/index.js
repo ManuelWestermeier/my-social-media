@@ -5,6 +5,7 @@ import cors from "cors"
 import { createUser } from './utils/create-user.js';
 import { login } from './utils/login.js';
 import { getUserData } from './utils/get-user-data.js';
+import { sendProfileImage } from './utils/send-profile-image.js';
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,8 @@ app.get("/create-user", createUser)
 app.get("/login", (req, res) => res.json(login(req)))
 
 app.get("/get-user-data", getUserData)
+
+app.get("/img/profile/:id", sendProfileImage)
 
 app.post('/upload', upload.single('video'), (req, res) => {
     if (!req.file) {
