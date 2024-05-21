@@ -7,9 +7,9 @@ export default function toggleSubscribtion(req, res) {
         return res.send("You must be logged in")
     }
 
-    const subscription =
-        (new URL("http://localhost" + req.url))
-            .searchParams.get("subscription")
+    const searchParams = (new URL("http://localhost" + req.url))
+    const subscription = searchParams.searchParams.get("subscription")
+    const user = searchParams.searchParams.get("user")
 
     if (!securifyPath(subscription)) {
         return res.send("invalid subscription name");
@@ -17,28 +17,42 @@ export default function toggleSubscribtion(req, res) {
 
     const subscriptionUserDataPath = `data/user/${subscription}/data.txt`
 
-    if (fs.existsSync(subscriptionUserDataPath)) {
+    if (!fs.existsSync(subscriptionUserDataPath)) {
         return res.send("Subscription Not found")
     }
 
-
     //read
 
-    const userDataPath = `data/user/${subscription}/data.txt`
+    const userDataPath = `data/user/${user}/data.txt`
 
     const userData = JSON.parse(fs.readFileSync(userDataPath, "utf-8"))
 
     const subscriptionUserData = JSON.parse(fs.readFileSync(subscriptionUserDataPath, "utf-8"))
 
-    const isSubscribed = userData.subscriptions.includes(subscription)
+    const isSubscribed = userData.abonnements.includes(subscription)
+
+    if (user == subscription) {
+        if (isSubscribed) {
+            userData.abonnements = subscriptionUserData.abonnements.filter(id => id != subscription)
+            userData.follower--
+        }
+        else {
+            userData.abonnements = [...userData.abonnements, subscription]
+            userData.follower++
+        }
+
+        fs.writeFileSync(userDataPath, JSON.stringify(userData), "utf-8")
+
+        return res.send("sucessfully subscribed")
+    }
 
     //logic
     if (isSubscribed) {
-        userData.subscriptions = subscriptionUserData.subscriptions.filter(id => id != subscription)
+        userData.abonnements = subscriptionUserData.abonnements.filter(id => id != subscription)
         subscriptionUserData.follower--
     }
     else {
-        userData.subscriptions = [...userData.subscriptions, subscription]
+        userData.abonnements = [...userData.abonnements, subscription]
         subscriptionUserData.follower++
     }
 
