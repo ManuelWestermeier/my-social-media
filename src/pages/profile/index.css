@@ -30,4 +30,5 @@
     height: 50px;
     border-radius: 25px;
     object-fit: contain;
+    cursor: pointer;
 }

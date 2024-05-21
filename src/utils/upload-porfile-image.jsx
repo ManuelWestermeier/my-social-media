@@ -1,4 +1,5 @@
 import getRequestUrl from "./get-request-url";
+import reloadAllImages from "./reload-all-images";
 
 export default function uploadProfileImage(setIsLoading, auth) {
   return (e) => {
@@ -23,6 +24,7 @@ export default function uploadProfileImage(setIsLoading, auth) {
         });
 
         if (!res.ok) {
+          alert("error");
           return setIsLoading(false);
         }
 
@@ -38,7 +40,9 @@ export default function uploadProfileImage(setIsLoading, auth) {
         setIsLoading(false);
       }
 
-      log(e.target)
+      setTimeout(() => {
+        reloadAllImages();
+      }, 200);
     };
 
     fileInput.click();

@@ -48,6 +48,7 @@ function ProfilePage({ userData, setUserData, auth }) {
           onClick={uploadProfileImage(setIsLoading, auth)}
           src={iconUrl}
           alt="Icon"
+          title="click to upload"
         />
         <h3>
           <input
