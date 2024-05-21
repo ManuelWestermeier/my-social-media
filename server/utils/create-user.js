@@ -23,7 +23,11 @@ export const createUser = (req, res) => {
     }
 
     const userData = {
-
+        liked: [],
+        abonnements: [],
+        videos: [],
+        description: "Hello\nI'm new",
+        name: user,
     }
 
     fs.mkdirSync(userRootPath, { recursive: true })

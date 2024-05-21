@@ -4,6 +4,7 @@ import { createUploadMulter } from './utils/create-upload-multer.js';
 import cors from "cors"
 import { createUser } from './utils/create-user.js';
 import { login } from './utils/login.js';
+import { getUserData } from './utils/get-user-data.js';
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,8 @@ app.use(cors({ origin: "*" }))
 app.get("/create-user", createUser)
 
 app.get("/login", (req, res) => res.json(login(req)))
+
+app.get("/get-user-data", getUserData)
 
 app.post('/upload', upload.single('video'), (req, res) => {
     if (!req.file) {
