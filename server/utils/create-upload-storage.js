@@ -20,7 +20,8 @@ function getRandomVideoId() {
 export default function createUploadStorage() {
     return multer.diskStorage({
         destination: (req, file, cb) => {
-            [req.id, req.uploaddir] = getRandomVideoId()
+            if (!req.uploaddir)
+                [req.id, req.uploaddir] = getRandomVideoId()
 
             cb(null, req.uploaddir);
         },
