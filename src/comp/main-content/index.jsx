@@ -10,6 +10,7 @@ import useFetchUserData from "../../hooks/fetch-user-data";
 import AuthPage from "../../pages/auth";
 import UserPage from "../../pages/user-profile";
 import RequestAuthPage from "../../pages/request-auth";
+import GotoRandomVideo from "../goto-random-video";
 
 function MainContent({ auth, setAuth }) {
   const [userData, setUserData, isAuth] = useFetchUserData(auth);
@@ -18,6 +19,7 @@ function MainContent({ auth, setAuth }) {
     <main className="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/vid" element={<GotoRandomVideo />} />
         <Route
           path="/vid/:id"
           element={

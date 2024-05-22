@@ -46,6 +46,8 @@ app.get("/get-user-name", getUserName)
 
 app.get("/toggle-subscription", toggleSubscribtion)
 
+app.get("/random-video", randomVideo)
+
 app.post("/upload-video", videoUpload.fields(videoUploadFields), uploadVideo);
 
 app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
