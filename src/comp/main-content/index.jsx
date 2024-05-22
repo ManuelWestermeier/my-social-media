@@ -21,7 +21,7 @@ function MainContent({ auth, setAuth }) {
         <Route path="/vid" element={<VidPage />} />
         <Route
           path="/upload"
-          element={isAuth ? <UploadPage /> : <RequestAuthPage />}
+          element={isAuth ? <UploadPage auth={auth} /> : <RequestAuthPage />}
         />
         <Route
           path="/abonnements"
