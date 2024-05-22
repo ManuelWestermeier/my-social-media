@@ -11,12 +11,18 @@ import uploadProfileImage from './utils/upload-profile-image.js';
 import getPublicUserData from './utils/get-public-user-data.js';
 import toggleSubscribtion from './utils/toggle-subscription.js';
 import getUserName from './utils/get-user-name.js';
+import uploadVideo from './utils/upload-video.js';
+import createUploadStorage from './utils/create-upload-storage.js';
+import { createVideoUploadMulter, videoUploadFields } from './utils/create-videoupload-multer.js';
 
 const app = express();
 const port = 3000;
 
 const profileImageStorage = createDiskStorage();
 const profileImageUpload = createUploadMulter(profileImageStorage)
+
+const videoUploadStorage = createUploadStorage();
+const videoUpload = createVideoUploadMulter(videoUploadStorage);
 
 app.use(cors({ origin: "*" }))
 
@@ -37,6 +43,8 @@ app.get("/get-public-user-data", getPublicUserData)
 app.get("/get-user-name", getUserName)
 
 app.get("/toggle-subscription", toggleSubscribtion)
+
+app.post("/upload-video", videoUpload.fields(videoUploadFields), uploadVideo);
 
 app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
 

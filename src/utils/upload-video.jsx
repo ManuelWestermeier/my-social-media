@@ -43,6 +43,7 @@ export default function uploadVideo(
     };
 
     xhr.onerror = () => {
+      setUploadingState(false);
       setError("Error uploading video.");
     };
 
