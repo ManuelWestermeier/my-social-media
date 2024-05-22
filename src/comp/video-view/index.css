@@ -1,0 +1,12 @@
+.video-view {
+    height: calc(100dvh - 56px);
+    overflow: hidden;
+    display: block;
+
+    scroll-snap-align: center;
+}
+
+.video-view video {
+    width: 100%;
+    height: calc(100dvh - 56px);
+}
