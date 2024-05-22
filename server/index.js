@@ -14,6 +14,7 @@ import getUserName from './utils/get-user-name.js';
 import uploadVideo from './utils/upload-video.js';
 import createUploadStorage from './utils/create-upload-storage.js';
 import { createVideoUploadMulter, videoUploadFields } from './utils/create-videoupload-multer.js';
+import randomVideo from './utils/random-video.js';
 
 const app = express();
 const port = 3000;

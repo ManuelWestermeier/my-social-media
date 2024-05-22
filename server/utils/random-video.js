@@ -10,9 +10,10 @@ export default function randomVideo(req, res) {
         lastModifyed = now;
         fs.readdir("data/uploads", (err, files) => {
             if (err) return
+            console.log(files)
             videos = files;
         });
     }
 
-    res.send(videos[Math.random() * videos.length])
+    res.send(videos[Math.floor(Math.random() * videos.length)])
 }
