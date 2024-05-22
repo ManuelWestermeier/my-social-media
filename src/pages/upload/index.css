@@ -4,4 +4,12 @@
     justify-content: center;
     flex-direction: column;
     height: calc(100dvh - 56px);
+    overflow: hidden;
+}
+
+.upload-page img,
+.upload-page video {
+    max-height: calc(50dvh - 200px);
+    max-width: 100%;
+    object-fit: contain;
 }
