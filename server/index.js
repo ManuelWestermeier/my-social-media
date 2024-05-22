@@ -26,6 +26,8 @@ const videoUpload = createVideoUploadMulter(videoUploadStorage);
 
 app.use(cors({ origin: "*" }))
 
+app.use('/videos/', express.static('data/uploads'));
+
 app.get("/create-user", createUser)
 
 app.get("/login", (req, res) => res.json(login(req)))

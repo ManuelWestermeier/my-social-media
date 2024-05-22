@@ -5,6 +5,7 @@ import Loading from "../../comp/loading";
 import getRequestUrl from "../../utils/get-request-url";
 import toggleSubscribe from "../../utils/toggle-subscribe";
 import "./index.css";
+import UserProfileVideoList from "../../comp/user-profile-video-list";
 
 function UserPage({ authUserData, setAuthUserData, auth }) {
   const { id } = useParams();
@@ -78,6 +79,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         readOnly
         ref={textAreaRef}
       ></textarea>
+      <UserProfileVideoList videos={userData.videos} />
     </div>
   );
 }

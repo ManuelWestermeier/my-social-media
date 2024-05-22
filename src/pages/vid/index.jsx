@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
 
-function VidPage() {
-  return (
-    <div>VidPage</div>
-  )
+function VidPage({ auth, userData, setUserData }) {
+  const { id } = useParams();
+  return <div>VidPage {id}</div>;
 }
 
-export default VidPage
+export default VidPage;

@@ -18,7 +18,16 @@ function MainContent({ auth, setAuth }) {
     <main className="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/vid" element={<VidPage />} />
+        <Route
+          path="/vid/:id"
+          element={
+            <VidPage
+              setUserData={setUserData}
+              userData={userData}
+              auth={auth}
+            />
+          }
+        />
         <Route
           path="/upload"
           element={isAuth ? <UploadPage auth={auth} /> : <RequestAuthPage />}
