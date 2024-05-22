@@ -28,24 +28,11 @@ function VideoElem({ videoId }) {
 }
 
 function UserProfileVideoList({ videos = [] }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  if (!isOpen) {
-    return (
-      <div className="profile-video-list">
-        <button onClick={(e) => setIsOpen(true)}>Videos</button>
-      </div>
-    );
-  }
-
-  const videoList = videos.map((videoId) => (
-    <VideoElem key={videoId} videoId={videoId} />
-  ));
-
   return (
     <div className="profile-video-list">
-      <button onClick={(e) => setIsOpen(false)}>Less</button>
-      {videoList}
+      {videos.map((videoId) => (
+        <VideoElem key={videoId} videoId={videoId} />
+      ))}
     </div>
   );
 }
