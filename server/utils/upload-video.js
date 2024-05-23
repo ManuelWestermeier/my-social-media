@@ -24,7 +24,6 @@ export default function uploadVideo(req, res) {
     fs.writeFileSync(path.join(req.uploaddir, "data.txt"), JSON.stringify(videoData), "utf-8")
     fs.writeFileSync(path.join(req.uploaddir, "views.txt"), "0", "utf-8")
     fs.writeFileSync(path.join(req.uploaddir, "comments.txt"), "[]", "utf-8")
-    fs.mkdirSync(path.join(req.uploaddir, "comments"), { recursive: true })
 
     res.json({ id: req.id });
 }
