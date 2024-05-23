@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 
 function VideoView({ id }) {
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -12,6 +14,8 @@ function VideoView({ id }) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            //document.location.hash = `/vid/${id}`;
+            navigate(`/vid/${id}`, { replace: true });
             videoElement.currentTime = 0;
             videoElement.play();
           } else {
