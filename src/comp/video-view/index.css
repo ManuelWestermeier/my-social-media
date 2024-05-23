@@ -1,10 +1,21 @@
 .video-view {
     height: calc(100dvh - 56px);
-    overflow: hidden;
     display: block;
 
     scroll-snap-align: center;
     position: relative;
+
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scroll-snap-stop: always;
+    -webkit-overflow-scrolling: touch;
+
+    display: flex;
+}
+
+.video-view::-webkit-scrollbar {
+    display: none;
 }
 
 .video-view video {
@@ -38,4 +49,12 @@
     height: 50px;
     object-fit: contain;
     border-radius: 25px;
+}
+
+.video-view>div {
+    flex: 0 0 100%;
+}
+
+.video-view>div:nth-child(2) {
+    flex: 0 0 90%;
 }

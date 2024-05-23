@@ -18,6 +18,7 @@ export default function uploadVideo(req, res) {
         auth: req.query.user,
         likes: 0,
         title: req.query.title,
+        date: new Date().toLocaleDateString(),
     }
 
     fs.writeFileSync(path.join(req.uploaddir, "data.txt"), JSON.stringify(videoData), "utf-8")

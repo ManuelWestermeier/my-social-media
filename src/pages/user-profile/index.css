@@ -11,11 +11,11 @@
 
 .profile-navigation a {
     transition: all 0.3s ease-in-out;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .profile-navigation .active {
     background-color: var(--a);
     color: var(--b);
-    padding: 5px;
-    border-radius: 5px;
 }

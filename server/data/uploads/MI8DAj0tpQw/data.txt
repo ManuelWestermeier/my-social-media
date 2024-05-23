@@ -1,1 +1,1 @@
-{"auth":"client","likes":0,"title":"My new Video"}
+{"auth":"client","likes":0,"title":"My new Video", "date": "today"}

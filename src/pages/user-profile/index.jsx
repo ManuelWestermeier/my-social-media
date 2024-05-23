@@ -20,7 +20,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
   const [follower, setFollower] = useState();
   const navigate = useNavigate();
-  const underPath = useLocation().pathname.split("/")[3];
+  const underPath = useLocation().pathname.split("/")[3] || "description";
 
   const subscribed = useMemo(() => {
     return authUserData?.abonnements?.includes(id);
@@ -73,19 +73,20 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         </button>
       </div>
       <div className="profile-navigation">
-        <NavLink to="description">Description</NavLink>
+        <NavLink
+          to="description"
+          className={(underPath == "description" && "active").toString()}
+        >
+          Description
+        </NavLink>
         <NavLink to="videos">Videos</NavLink>
       </div>
       <div>
-        {!underPath ? (
-          <Navigate to="description" />
-        ) : underPath == "description" ? (
+        {underPath == "description" ? (
           <Description userDescription={userDescription} />
         ) : underPath == "videos" ? (
           <UserProfileVideoList videos={userData.videos} />
-        ) : (
-          <Navigate to="description" />
-        )}
+        ) : null}
       </div>
     </div>
   );

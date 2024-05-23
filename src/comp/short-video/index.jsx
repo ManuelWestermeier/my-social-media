@@ -9,23 +9,17 @@ function ShortVideo({ id, videoRef }) {
 
   const handleFullScreenToggle = (e) => {
     e.preventDefault();
-    if (!document.fullscreenElement) {
-      // Request fullscreen
-      e.target.requestFullscreen().catch((err) => {
-        alert(
-          `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
-        );
-      });
-      e.target.setAttribute("controlls", true);
-    } else {
-      // Exit fullscreen
-      document.exitFullscreen().catch((err) => {
-        alert(
-          `Error attempting to exit fullscreen mode: ${err.message} (${err.name})`
-        );
-      });
-      e.target.setAttribute("controlls", false);
-    }
+    try {
+      if (!document.fullscreenElement) {
+        // Request fullscreen
+        e.target.requestFullscreen();
+        e.target.setAttribute("controlls", true);
+      } else {
+        // Exit fullscreen
+        document.exitFullscreen();
+        e.target.setAttribute("controlls", false);
+      }
+    } catch (error) {}
   };
 
   return (

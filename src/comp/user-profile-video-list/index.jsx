@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function VideoElem({ videoId }) {
   const [videoData, setVideoData] = useState(false);
+  const [videoViews, setVideoViews] = useState(0);
 
   useEffect(() => {
     try {
@@ -11,6 +12,9 @@ function VideoElem({ videoId }) {
         try {
           setVideoData(JSON.parse(await res.text()));
         } catch (error) {}
+      });
+      fetch(`${apiUrl}/videos/${videoId}/views.txt`).then(async (res) => {
+        setVideoViews(parseInt(await res.text()));
       });
     } catch (error) {}
   }, []);
@@ -20,7 +24,7 @@ function VideoElem({ videoId }) {
       <img src={`${apiUrl}/videos/${videoId}/cover.jpg`} alt="video" />
       {videoData && (
         <p>
-          {videoData.likes}👍 | {videoData.title}
+          {videoData.likes}👍 | {videoViews || 0} | {videoData.title}
         </p>
       )}
     </Link>
