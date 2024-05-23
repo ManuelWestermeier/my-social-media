@@ -9,6 +9,7 @@ import ShortVideoComments from "../short-video-comments";
 function VideoView({ id }) {
   const videoRef = useRef();
   const commentPageRef = useRef();
+  const videoSectionRef = useRef();
   const navigate = useNavigate();
   const videoData = useVideoData(id);
 
@@ -43,12 +44,16 @@ function VideoView({ id }) {
 
   return (
     <div className="video-view">
-      <div>
+      <div ref={videoSectionRef}>
         <ShortVideo id={id} videoRef={videoRef} />
         <VideoData videoData={videoData} commentPageRef={commentPageRef} />
       </div>
       <div ref={commentPageRef}>
-        <ShortVideoComments id={id} videoData={videoData} />
+        <ShortVideoComments
+          id={id}
+          videoSectionRef={videoSectionRef}
+          videoData={videoData}
+        />
       </div>
     </div>
   );

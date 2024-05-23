@@ -42,6 +42,14 @@
     gap: 10px;
     overflow: hidden;
     background-color: transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.8;
+}
+
+.video-view:hover .video-data {
+    opacity: 1;
+    background-color: var(--b);
 }
 
 .video-view .video-data a,
@@ -50,6 +58,10 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
+}
+
+.video-view .video-data a {
+    gap: 5px;
 }
 
 .video-view .video-data img {
