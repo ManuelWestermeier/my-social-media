@@ -12,10 +12,13 @@
     -webkit-overflow-scrolling: touch;
 
     display: flex;
+
+    overflow-y: hidden;
 }
 
 .video-view>div {
     flex: 0 0 100%;
+    height: calc(100dvh - 56px);
 }
 
 .video-view>div:nth-child(2) {
