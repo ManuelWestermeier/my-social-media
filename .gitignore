@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 # The (Database)
-server/data/uploads
-server/data/user
+./server/data/uploads
+./server/data/user
 cloc.exe
