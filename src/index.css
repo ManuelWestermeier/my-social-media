@@ -55,6 +55,9 @@ button,
   cursor: pointer;
   background-color: var(--a);
   color: var(--b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .active,

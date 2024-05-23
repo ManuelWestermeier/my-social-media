@@ -22,9 +22,11 @@
     justify-content: space-between;
     gap: 10px;
     overflow: hidden;
+    background-color: transparent;
 }
 
-.video-view .video-data a {
+.video-view .video-data a,
+.video-view .video-data p {
     display: flex;
     align-items: center;
     justify-content: center;

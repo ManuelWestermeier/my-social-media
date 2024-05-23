@@ -1,5 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  NavLink,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
 import getRequestUrl from "../../utils/get-request-url";
@@ -14,18 +21,9 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   const [follower, setFollower] = useState();
   const navigate = useNavigate();
 
-  const textAreaRef = useRef();
-
   const subscribed = useMemo(() => {
     return authUserData?.abonnements?.includes(id);
   }, [authUserData, userData]);
-
-  useEffect(() => {
-    try {
-      const textarea = textAreaRef.current;
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    } catch (error) {}
-  }, [textAreaRef]);
 
   //fetch the data
   useEffect(() => {
@@ -73,15 +71,45 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
           {subscribed ? "Unsubscribe" : "Subscribe"}
         </button>
       </div>
-      <textarea
-        value={userDescription}
-        title="max:1500 characteracters"
-        readOnly
-        ref={textAreaRef}
-      ></textarea>
-      <UserProfileVideoList videos={userData.videos} />
+      <div className="portfolio-navigation">
+        <NavLink to="description">Description</NavLink>
+        <NavLink to="videos">Videos</NavLink>
+      </div>
+      <div>
+        <Routes location={`/profile/${id}/`}>
+          <Route
+            path="description"
+            element={<Description userDescription={userDescription} />}
+          />
+          <Route
+            path="videos"
+            element={<UserProfileVideoList videos={userData.videos} />}
+          />
+          <Route path="/" element={<Navigate to="description" />} />
+        </Routes>
+      </div>
     </div>
   );
 }
 
 export default UserPage;
+
+function Description({ userDescription }) {
+  const textAreaRef = useRef();
+
+  useEffect(() => {
+    try {
+      const textarea = textAreaRef.current;
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    } catch (error) {}
+  }, [textAreaRef]);
+
+  return (
+    <textarea
+      value={userDescription}
+      title="max:1500 characters"
+      readOnly
+      ref={textAreaRef}
+    ></textarea>
+  );
+}

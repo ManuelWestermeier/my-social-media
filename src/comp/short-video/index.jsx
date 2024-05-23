@@ -11,11 +11,12 @@ function ShortVideo({ id, videoRef }) {
     e.preventDefault();
     if (!document.fullscreenElement) {
       // Request fullscreen
-      e.target.parentElement.parentElement.requestFullscreen().catch((err) => {
+      e.target.requestFullscreen().catch((err) => {
         alert(
           `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
         );
       });
+      e.target.setAttribute("controlls", true);
     } else {
       // Exit fullscreen
       document.exitFullscreen().catch((err) => {
@@ -23,13 +24,15 @@ function ShortVideo({ id, videoRef }) {
           `Error attempting to exit fullscreen mode: ${err.message} (${err.name})`
         );
       });
+      e.target.setAttribute("controlls", false);
     }
   };
 
   return (
-    <div className="video-controlls" onContextMenu={handleFullScreenToggle}>
+    <div className="video-controlls">
       <video
         onClick={handlePlayPauseToggle}
+        onContextMenu={handleFullScreenToggle}
         loop
         ref={videoRef}
         poster={`${apiUrl}/videos/${id}/cover.jpg`}

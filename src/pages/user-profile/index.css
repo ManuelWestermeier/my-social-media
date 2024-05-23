@@ -2,3 +2,20 @@
     background-color: var(--b);
     color: var(--a);
 }
+
+.portfolio-navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.portfolio-navigation a {
+    transition: all 0.3s ease-in-out;
+}
+
+.portfolio-navigation .active {
+    background-color: var(--a);
+    color: var(--b);
+    padding: 5px;
+    border-radius: 5px;
+}

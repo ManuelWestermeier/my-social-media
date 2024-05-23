@@ -59,7 +59,7 @@ function MainContent({ auth, setAuth }) {
           }
         />
         <Route
-          path="/profile/:id"
+          path="/profile/:id/*"
           element={
             <UserPage
               auth={auth}
