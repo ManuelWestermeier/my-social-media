@@ -1,3 +1,4 @@
 .video-controlls {
     cursor: pointer;
+    height: calc(100dvh - 56px);
 }

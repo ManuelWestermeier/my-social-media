@@ -6,7 +6,7 @@ const fileFilter = (req, file, cb) => {
         return cb(null, false);
     }
     // Accept only JPG files
-    if (file.mimetype == 'image/jpeg' && file.fieldname == "cover") {
+    if ((file.mimetype == 'image/jpeg' || file.mimetype == 'image/png' || file.mimetype == 'image/jpg') && file.fieldname == "cover") {
         cb(null, true);
     }
     else if (file.mimetype == "video/mp4" && file.fieldname == "video") {
