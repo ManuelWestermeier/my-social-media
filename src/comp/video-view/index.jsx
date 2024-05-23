@@ -6,7 +6,7 @@ import useVideoData from "../../hooks/use-video-data";
 import VideoData from "../video-data";
 import ShortVideoComments from "../short-video-comments";
 
-function VideoView({ id }) {
+function VideoView({ id, auth }) {
   const videoRef = useRef();
   const commentPageRef = useRef();
   const videoSectionRef = useRef();
@@ -50,6 +50,7 @@ function VideoView({ id }) {
       </div>
       <div ref={commentPageRef}>
         <ShortVideoComments
+          auth={auth}
           id={id}
           videoSectionRef={videoSectionRef}
           videoData={videoData}
