@@ -3,17 +3,17 @@
     color: var(--a);
 }
 
-.portfolio-navigation {
+.profile-navigation {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.portfolio-navigation a {
+.profile-navigation a {
     transition: all 0.3s ease-in-out;
 }
 
-.portfolio-navigation .active {
+.profile-navigation .active {
     background-color: var(--a);
     color: var(--b);
     padding: 5px;

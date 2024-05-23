@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   NavLink,
   Navigate,
-  Route,
-  Routes,
+  useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
@@ -13,6 +12,7 @@ import getRequestUrl from "../../utils/get-request-url";
 import toggleSubscribe from "../../utils/toggle-subscribe";
 import "./index.css";
 import UserProfileVideoList from "../../comp/user-profile-video-list";
+import Description from "../../comp/description";
 
 function UserPage({ authUserData, setAuthUserData, auth }) {
   const { id } = useParams();
@@ -20,6 +20,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
   const [userData, setUserData] = useLocalStorage("user-data" + id, false);
   const [follower, setFollower] = useState();
   const navigate = useNavigate();
+  const underPath = useLocation().pathname.split("/")[3];
 
   const subscribed = useMemo(() => {
     return authUserData?.abonnements?.includes(id);
@@ -71,45 +72,23 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
           {subscribed ? "Unsubscribe" : "Subscribe"}
         </button>
       </div>
-      <div className="portfolio-navigation">
+      <div className="profile-navigation">
         <NavLink to="description">Description</NavLink>
         <NavLink to="videos">Videos</NavLink>
       </div>
       <div>
-        <Routes location={`/profile/${id}/`}>
-          <Route
-            path="description"
-            element={<Description userDescription={userDescription} />}
-          />
-          <Route
-            path="videos"
-            element={<UserProfileVideoList videos={userData.videos} />}
-          />
-          <Route path="/" element={<Navigate to="description" />} />
-        </Routes>
+        {!underPath ? (
+          <Navigate to="description" />
+        ) : underPath == "description" ? (
+          <Description userDescription={userDescription} />
+        ) : underPath == "videos" ? (
+          <UserProfileVideoList videos={userData.videos} />
+        ) : (
+          <Navigate to="description" />
+        )}
       </div>
     </div>
   );
 }
 
 export default UserPage;
-
-function Description({ userDescription }) {
-  const textAreaRef = useRef();
-
-  useEffect(() => {
-    try {
-      const textarea = textAreaRef.current;
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    } catch (error) {}
-  }, [textAreaRef]);
-
-  return (
-    <textarea
-      value={userDescription}
-      title="max:1500 characters"
-      readOnly
-      ref={textAreaRef}
-    ></textarea>
-  );
-}
