@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
 import "./index.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ShortVideo from "../short-video";
+import useVideoData from "../../hooks/use-video-data";
 
 function VideoView({ id }) {
   const videoRef = useRef(null);
   const navigate = useNavigate();
+  const videoData = useVideoData(id);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -37,13 +40,18 @@ function VideoView({ id }) {
 
   return (
     <div className="video-view">
-      <video
-        loop
-        ref={videoRef}
-        poster={`${apiUrl}/videos/${id}/cover.jpg`}
-        controls
-        src={`${apiUrl}/videos/${id}/video.mp4`}
-      ></video>
+      <ShortVideo id={id} videoRef={videoRef} />
+      {videoData && (
+        <>
+          <div className="video-data">
+            <Link to={`/profile/${videoData?.auth}`}>
+              <img src={`${apiUrl}/img/profile/${videoData?.auth}`} alt="" />
+              <i>@{videoData?.auth}</i>
+            </Link>
+            <p>{videoData?.title}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
