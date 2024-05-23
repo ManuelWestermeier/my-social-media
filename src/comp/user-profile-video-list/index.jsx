@@ -1,23 +1,11 @@
-import { useEffect, useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import useVideoViews from "../../hooks/use-video-views";
+import useVideoData from "../../hooks/use-video-data";
 
 function VideoElem({ videoId }) {
-  const [videoData, setVideoData] = useState(false);
-  const [videoViews, setVideoViews] = useState(0);
-
-  useEffect(() => {
-    try {
-      fetch(`${apiUrl}/videos/${videoId}/data.txt`).then(async (res) => {
-        try {
-          setVideoData(JSON.parse(await res.text()));
-        } catch (error) {}
-      });
-      fetch(`${apiUrl}/videos/${videoId}/views.txt`).then(async (res) => {
-        setVideoViews(parseInt(await res.text()));
-      });
-    } catch (error) {}
-  }, []);
+  const videoData = useVideoData(videoId);
+  const videoViews = useVideoViews(videoId)
 
   return (
     <Link to={`/vid/${videoId}`} className="video">

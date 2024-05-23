@@ -1,11 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  NavLink,
-  Navigate,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import Loading from "../../comp/loading";
 import getRequestUrl from "../../utils/get-request-url";
@@ -17,7 +11,7 @@ import Description from "../../comp/description";
 function UserPage({ authUserData, setAuthUserData, auth }) {
   const { id } = useParams();
 
-  const [userData, setUserData] = useLocalStorage("user-data" + id, false);
+  const [userData, setUserData] = useLocalStorage("user-data-" + id, false);
   const [follower, setFollower] = useState();
   const navigate = useNavigate();
   const underPath = useLocation().pathname.split("/")[3] || "description";

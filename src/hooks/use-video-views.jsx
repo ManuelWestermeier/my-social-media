@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 
-function useVideoData(id) {
-  const [videoData, setVideoData] = useLocalStorage(`video-data-${id}`, false);
+function useVideoViews(videoId) {
+  const [videoViews, setVideoViews] = useLocalStorage(
+    `video-views-${videoId}`,
+    0
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     try {
-      fetch(`${apiUrl}/videos/${id}/data.txt`).then(async (res) => {
+      fetch(`${apiUrl}/videos/${videoId}/views.txt`).then(async (res) => {
         try {
-          setVideoData(JSON.parse(await res.text()));
+          const views = parseInt(await res.text());
+          setVideoViews(views);
         } catch (error) {
           navigate("/vid/");
         }
@@ -20,7 +24,7 @@ function useVideoData(id) {
     }
   }, []);
 
-  return videoData;
+  return videoViews;
 }
 
-export default useVideoData;
+export default useVideoViews;

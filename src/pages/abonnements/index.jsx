@@ -8,7 +8,7 @@ function Abonnement({ id }) {
   const profileImageUrl = `${apiUrl}/img/profile/${id}`;
   const userUrl = `/profile/${id}`;
 
-  const [name, setName] = useLocalStorage(`name-${id}`, id);
+  const [name, setName] = useLocalStorage(`user-name-${id}`, id);
 
   useEffect(() => {
     fetch(getRequestUrl("/get-user-name", { id })).then(async (res) => {

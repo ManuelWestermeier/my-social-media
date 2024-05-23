@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ShortVideo from "../short-video";
 import useVideoData from "../../hooks/use-video-data";
 import VideoData from "../video-data";
+import ShortVideoComments from "../short-video-comments";
 
 function VideoView({ id }) {
   const videoRef = useRef();
@@ -47,10 +48,7 @@ function VideoView({ id }) {
         <VideoData videoData={videoData} commentPageRef={commentPageRef} />
       </div>
       <div ref={commentPageRef}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere nulla
-        debitis optio dolorum obcaecati quas nam quisquam voluptatibus,
-        praesentium, illo nobis consectetur reprehenderit dignissimos eligendi
-        quam laborum necessitatibus voluptas. Dolor.
+        <ShortVideoComments id={id} videoData={videoData} />
       </div>
     </div>
   );
