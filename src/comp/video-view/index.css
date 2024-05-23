@@ -14,6 +14,14 @@
     display: flex;
 }
 
+.video-view>div {
+    flex: 0 0 100%;
+}
+
+.video-view>div:nth-child(2) {
+    flex: 0 0 95%;
+}
+
 .video-view::-webkit-scrollbar {
     display: none;
 }
@@ -49,12 +57,4 @@
     height: 50px;
     object-fit: contain;
     border-radius: 25px;
-}
-
-.video-view>div {
-    flex: 0 0 100%;
-}
-
-.video-view>div:nth-child(2) {
-    flex: 0 0 95%;
 }
