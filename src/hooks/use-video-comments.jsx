@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function useVideoComments() {
+function useVideoComments(videoId) {
   const [comments, setComments] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      fetch(`${apiUrl}/videos/${videoId}/comments.txt`).then(async (res) => {
+        try {
+          setComments(JSON.parse(await res.text()));
+        } catch (error) {
+          navigate("/vid/");
+        }
+      });
+    } catch (error) {
+      navigate("/vid/");
+    }
+  }, []);
 
   return [
-    { auth: "admin", text: "Hello, world" },
-    { auth: "client", text: "Hello, world" },
-    { auth: "admin", text: "Hello, world" },
+    comments,
+    (_new) => {
+      setComments((old) => [_new, ...old]);
+    },
+    navigate,
   ];
-
-  return comments;
 }
+
 export default useVideoComments;

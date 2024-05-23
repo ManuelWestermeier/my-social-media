@@ -4,25 +4,58 @@ import "./index.css";
 import useVideoComments from "../../hooks/use-video-comments";
 import { Link } from "react-router-dom";
 
-function VideoComments(id) {
-  const videoComments = useVideoComments(id);
+function VideoComments({ id, auth }) {
+  const [videoComments, pushComment, navigate] = useVideoComments(id);
 
-  if (!videoComments) {
-    return <p>loading....</p>;
+  function Comments() {
+    if (!videoComments) {
+      return <p>loading....</p>;
+    }
+
+    if (videoComments.length === 0) {
+      return <p>No comments yet</p>;
+    }
+
+    return videoComments.map(({ auth, text }) => (
+      <div className="video-comment" key={`${auth}@${text}`}>
+        <p>{text}</p>
+        <Link to={`/profile/${auth}`} target="_blank">
+          <img src={`${apiUrl}/img/profile/${auth}`} alt="" />
+          <i>@{auth}</i>
+        </Link>
+      </div>
+    ));
   }
 
-  return videoComments.map(({ auth, text }) => (
-    <div className="video-comment" key={`${auth}@${text}`}>
-      <p>{text}</p>
-      <Link to={`/profile/${auth}`} target="_blank">
-        <img src={`${apiUrl}/img/profile/${auth}`} alt="" />
-        <i>@{auth}</i>
-      </Link>
-    </div>
-  ));
+  return (
+    <>
+      <div>
+        <Comments />
+      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const fd = new FormData(e.target);
+
+          if (!auth) {
+            return navigate("/auth");
+          }
+
+          pushComment({
+            text: fd.get("comment"),
+            auth: auth.user,
+          });
+        }}
+      >
+        <h3>Add Comment</h3>
+        <input type="text" name="comment" placeholder="Add a comment..." />
+        <button>Send</button>
+      </form>
+    </>
+  );
 }
 
-function ShortVideoComments({ id, videoData, videoSectionRef }) {
+function ShortVideoComments({ id, videoData, videoSectionRef, auth }) {
   const videoViews = useVideoViews(id);
   const [viewComments, setViewComments] = useState(false);
 
@@ -50,6 +83,7 @@ function ShortVideoComments({ id, videoData, videoSectionRef }) {
         <span>{videoData?.title}</span>
       </h2>
       <div className="data">
+        <Link to={`/profile/${videoData?.auth}`}>@{videoData?.auth}</Link>
         <p>{videoData?.date}</p>
         <p>
           {videoViews}👁️ | {videoData?.likes}👍
@@ -59,7 +93,7 @@ function ShortVideoComments({ id, videoData, videoSectionRef }) {
         {!viewComments ? (
           <button onClick={(e) => setViewComments(true)}>View Comments</button>
         ) : (
-          <VideoComments id={id} />
+          <VideoComments auth={auth} id={id} />
         )}
       </div>
     </div>
