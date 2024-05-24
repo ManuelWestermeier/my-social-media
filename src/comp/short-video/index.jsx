@@ -25,7 +25,9 @@ function ShortVideo({ id, videoRef }) {
   };
 
   useEffect(() => {
-    fetch(getRequestUrl("/add-view", { id }));
+    try {
+      fetch(getRequestUrl("/add-view", { id }));
+    } catch (error) {}
   }, []);
 
   return (
