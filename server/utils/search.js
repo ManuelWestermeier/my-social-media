@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export const videoSearchItems = fs.readdirSync("data/uploads").map(id => {
+export var videoSearchItems = fs.readdirSync("data/uploads").map(id => {
     const videoData = JSON.parse(fs.readFileSync(`data/uploads/${id}/data.txt`, "utf8"));
     return {
         id,

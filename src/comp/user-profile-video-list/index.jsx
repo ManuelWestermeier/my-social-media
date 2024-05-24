@@ -4,7 +4,7 @@ import useVideoViews from "../../hooks/use-video-views";
 import useVideoData from "../../hooks/use-video-data";
 import getRequestUrl from "../../utils/get-request-url";
 
-function VideoElem({ videoId, auth }) {
+function VideoElem({ videoId, auth, deleteVideoWithId }) {
   const [videoData] = useVideoData(videoId);
   const videoViews = useVideoViews(videoId);
 
@@ -23,19 +23,20 @@ function VideoElem({ videoId, auth }) {
           className="delete-button"
           onClick={async (e) => {
             e.preventDefault();
-            if (!confirm('Are you sure you want to delete this video?')) {
-              return
+            
+            if (!confirm("Are you sure you want to delete this video?")) {
+              return;
             }
             try {
               const res = await fetch(
                 getRequestUrl("/delete-video", { ...auth, videoId })
               );
               if (!res.ok) {
-                return alert("error deleting video")
+                return alert("error deleting video");
               }
-              e.target.style.display = "none"
+              deleteVideoWithId(videoId)
             } catch (error) {
-              alert(error)
+              alert(error);
             }
           }}
         >
@@ -54,11 +55,16 @@ function VideoElem({ videoId, auth }) {
   );
 }
 
-function UserProfileVideoList({ videos = [], auth }) {
+function UserProfileVideoList({ videos = [], auth, deleteVideoWithId }) {
   return (
     <div className="profile-video-list">
       {videos.map((videoId) => (
-        <VideoElem key={videoId} auth={auth} videoId={videoId} />
+        <VideoElem
+          key={videoId}
+          deleteVideoWithId={deleteVideoWithId}
+          auth={auth}
+          videoId={videoId}
+        />
       ))}
     </div>
   );

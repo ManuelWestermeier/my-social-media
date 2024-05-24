@@ -1,1 +1,0 @@
-[{"auth":"admin","text":"s"},{"auth":"admin","text":"s"},{"auth":"admin","text":"s"},{"auth":"admin","text":"b"},{"auth":"admin","text":"b"},{"auth":"admin","text":"Nice"},{"auth":"admin","text":"Test Comment"}]

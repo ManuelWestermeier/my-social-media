@@ -70,7 +70,18 @@ function ProfilePage({ userData, setUserData, auth }) {
         title="max:1500 characteracters"
         onChange={onValueChange("description")}
       ></textarea>
-      <VideManager auth={auth} videos={userData?.videos} />
+      <VideManager
+        deleteVideoWithId={(id) =>
+          setUserData((old) => {
+            return {
+              ...old,
+              videos: old.videos.filter((v) => v.id !== id),
+            };
+          })
+        }
+        auth={auth}
+        videos={userData?.videos}
+      />
     </div>
   );
 }

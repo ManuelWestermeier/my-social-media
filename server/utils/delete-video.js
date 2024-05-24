@@ -1,5 +1,6 @@
 import { login } from "./login.js";
 import fs from "fs"
+import { videoSearchItems } from "./search.js";
 
 export default function deleteVideo(req, res) {
     if (!login(req)[0]) {
@@ -34,6 +35,8 @@ export default function deleteVideo(req, res) {
     userData.videos.splice(userData.videos.indexOf(videoId), 1)
 
     fs.writeFileSync(userDataPath, JSON.stringify(userData, null, 2))
+
+    videoSearchItems = videoSearchItems.filter((video) => video.id != videoId)
 
     return res.send("video deleted")
 }
