@@ -3,6 +3,7 @@ import useVideoViews from "../../hooks/use-video-views";
 import "./index.css";
 import useVideoComments from "../../hooks/use-video-comments";
 import { Link } from "react-router-dom";
+import TextView from "../../utils/text-view";
 
 function VideoComments({ id, auth }) {
   const [videoComments, pushComment, navigate] = useVideoComments(id);
@@ -85,6 +86,7 @@ function ShortVideoComments({ id, videoData, videoSectionRef, auth }) {
       <div className="data">
         <Link to={`/profile/${videoData?.auth}`}>@{videoData?.auth}</Link>
         <p>{videoData?.date}</p>
+        <TextView text={videoData?.description} />
         <p>
           {videoViews}👁️ | {videoData?.likes}👍
         </p>

@@ -5,6 +5,7 @@ export default function uploadVideo(
   cover,
   video,
   title,
+  description,
   navigate,
   setUploadingState,
   setError
@@ -19,7 +20,11 @@ export default function uploadVideo(
     formData.append("cover", cover);
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", getRequestUrl("/upload-video", { ...auth, title }), true);
+    xhr.open(
+      "POST",
+      getRequestUrl("/upload-video", { ...auth, title, description }),
+      true
+    );
 
     xhr.upload.onprogress = (event) => {
       if (event.lengthComputable) {

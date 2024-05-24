@@ -9,6 +9,7 @@ function UploadPage({ auth }) {
   const [videoBlob, setVideoBlob] = useState(false);
   const [uploadingState, setUploadingState] = useState(false);
   const titleInput = useRef();
+  const descriptionTextarea = useRef();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
@@ -26,6 +27,8 @@ function UploadPage({ auth }) {
         defaultValue="My new Video"
         ref={titleInput}
       />
+      <p>Description</p>
+      <textarea ref={descriptionTextarea} defaultValue="..." />
       <p>Cover</p>
       {coverBlob && <img src={URL.createObjectURL(coverBlob)} alt="no cover" />}
       <input
@@ -49,6 +52,7 @@ function UploadPage({ auth }) {
           coverBlob,
           videoBlob,
           titleInput?.current?.value ?? "",
+          descriptionTextarea?.current?.value ?? "",
           navigate,
           setUploadingState,
           setError

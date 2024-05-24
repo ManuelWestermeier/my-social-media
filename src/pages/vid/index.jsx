@@ -17,18 +17,14 @@ function VidPage({ auth, userData, setUserData }) {
 
   useEffect(() => {
     const containerElement = containerRef.current;
-    const handleScroll = () => {
+
+    containerElement.onscroll = () => {
       if (
         containerElement.scrollLeft + containerElement.clientWidth >=
         containerElement.scrollWidth
       ) {
         loadMoreVideos();
       }
-    };
-
-    containerElement.addEventListener("scroll", handleScroll);
-    return () => {
-      containerElement.removeEventListener("scroll", handleScroll);
     };
   }, [loadMoreVideos]);
 
