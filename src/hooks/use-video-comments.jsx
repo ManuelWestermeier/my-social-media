@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import getRequestUrl from "../utils/get-request-url";
 
-function useVideoComments(videoId) {
+function useVideoComments(videoId, auth) {
   const [comments, setComments] = useState(false);
   const navigate = useNavigate();
 
@@ -21,8 +22,21 @@ function useVideoComments(videoId) {
 
   return [
     comments,
-    (_new) => {
-      setComments((old) => [_new, ...old]);
+    async (newComment) => {
+      setComments((old) => [newComment, ...old]);
+      try {
+        const res = await fetch(
+          getRequestUrl("/add-comment", { ...auth, text: newComment, videoId })
+        );
+
+        if (!res.ok) {
+          alert("error " + (await res.text()));
+          navigate("/vid/");
+        }
+      } catch (error) {
+        alert("error " + error);
+        navigate("/vid/");
+      }
     },
     navigate,
   ];

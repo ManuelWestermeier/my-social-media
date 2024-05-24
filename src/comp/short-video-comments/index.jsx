@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import TextView from "../../utils/text-view";
 
 function VideoComments({ id, auth, userData, setUserData }) {
-  const [videoComments, pushComment, navigate] = useVideoComments(id);
+  const [videoComments, pushComment, navigate] = useVideoComments(id, auth);
 
   function Comments() {
     if (!videoComments) {
@@ -42,10 +42,7 @@ function VideoComments({ id, auth, userData, setUserData }) {
             return navigate("/auth");
           }
 
-          pushComment({
-            text: fd.get("comment"),
-            auth: auth.user,
-          });
+          pushComment(fd.get("comment"));
         }}
       >
         <h3>Add Comment</h3>
