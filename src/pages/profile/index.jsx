@@ -53,11 +53,11 @@ function ProfilePage({ userData, setUserData, auth }) {
   return (
     <div className="profile-page">
       <div className="header">
+        <img src={iconUrl} alt="Icon" title="click to upload" />
         <img
           onClick={uploadProfileImage(setIsLoading, auth)}
-          src={iconUrl}
-          alt="Icon"
-          title="click to upload"
+          src="https://raw.githubusercontent.com/ManuelWestermeier/my-social-media/main/docs/edit.jpeg"
+          alt="edit"
         />
         <h3>
           <input
