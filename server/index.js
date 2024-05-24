@@ -18,6 +18,7 @@ import randomVideo from './utils/random-video.js';
 import toggleLikeVideo from './utils/toggle-like-video.js';
 import addComment from './utils/add-comment.js';
 import addView from './utils/add-view.js';
+import search from './utils/search.js';
 
 const app = express();
 const port = 3000;
@@ -61,5 +62,7 @@ app.get("/toggle-like-video", toggleLikeVideo)
 app.get("/add-comment", addComment)
 
 app.get("/add-view", addView)
+
+app.get("/search", search)
 
 app.listen(port);

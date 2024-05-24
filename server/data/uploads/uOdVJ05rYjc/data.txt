@@ -1,1 +1,1 @@
-{"auth":"admin","likes":0,"title":"#s#s*2","date":"24.5.2024"}
+{"auth":"admin","likes":2,"title":"#s#s*2","date":"24.5.2024"}

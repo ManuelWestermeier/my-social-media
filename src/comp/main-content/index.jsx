@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 import { Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "../../pages/home";
 import VidPage from "../../pages/vid";
 import UploadPage from "../../pages/upload";
 import AbonnementsPage from "../../pages/abonnements";
@@ -11,6 +10,7 @@ import AuthPage from "../../pages/auth";
 import UserPage from "../../pages/user-profile";
 import RequestAuthPage from "../../pages/request-auth";
 import GotoRandomVideo from "../goto-random-video";
+import SearchPage from "../../pages/search";
 
 function MainContent({ auth, setAuth }) {
   const [userData, setUserData, isAuth] = useFetchUserData(auth);
@@ -18,7 +18,8 @@ function MainContent({ auth, setAuth }) {
   return (
     <main className="main-content">
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Navigate to="/vid/" replace />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/vid" element={<GotoRandomVideo />} />
         <Route
           path="/vid/:id"
