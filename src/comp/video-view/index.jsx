@@ -53,6 +53,7 @@ function VideoView({ id, auth, userData, setUserData }) {
           videoId={id}
           videoData={videoData}
           commentPageRef={commentPageRef}
+          auth={auth}
         />
       </div>
       <div ref={commentPageRef}>

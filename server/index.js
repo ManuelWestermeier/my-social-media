@@ -15,6 +15,7 @@ import uploadVideo from './utils/upload-video.js';
 import createUploadStorage from './utils/create-upload-storage.js';
 import { createVideoUploadMulter, videoUploadFields } from './utils/create-videoupload-multer.js';
 import randomVideo from './utils/random-video.js';
+import toggleLlikeVideo from './utils/toggle-like-video.js';
 
 const app = express();
 const port = 3000;
@@ -52,5 +53,7 @@ app.get("/random-video", randomVideo)
 app.post("/upload-video", videoUpload.fields(videoUploadFields), uploadVideo);
 
 app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
+
+app.get("/toggle-like-video", toggleLlikeVideo)
 
 app.listen(port);

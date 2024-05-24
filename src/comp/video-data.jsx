@@ -1,6 +1,6 @@
-import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
+import useLike from "../hooks/use-like";
 
 function VideoData({
   videoData,
@@ -9,30 +9,15 @@ function VideoData({
   userData,
   setUserData,
   setVideoData,
+  auth,
 }) {
-  const liked = useMemo(() => {
-    return userData?.liked?.includes?.(videoId);
-  }, [userData]);
-
-  const likeVideo = (e) => {
-    e.target.classList.toggle("liked");
-
-    setUserData((old) => {
-      return {
-        ...old,
-        liked: old.liked.includes(videoId)
-          ? old.liked.filter((id) => id !== videoId)
-          : [...old.liked, videoId],
-      };
-    });
-
-    setVideoData((old) => {
-      return {
-        ...old,
-        likes: !liked ? old.likes + 1 : old.likes - 1,
-      };
-    });
-  };
+  const [liked, likeVideo] = useLike({
+    auth,
+    setUserData,
+    setVideoData,
+    userData,
+    videoId,
+  });
 
   return (
     videoData && (
