@@ -20,6 +20,7 @@ import addComment from './utils/add-comment.js';
 import addView from './utils/add-view.js';
 import search from './utils/search.js';
 import deleteComment from './utils/delete-comment.js';
+import deleteVideo from './utils/delete-video.js';
 
 const app = express();
 const port = 3000;
@@ -55,6 +56,8 @@ app.get("/toggle-subscription", toggleSubscribtion)
 app.get("/random-video", randomVideo)
 
 app.post("/upload-video", videoUpload.fields(videoUploadFields), uploadVideo);
+
+app.get("/delete-video", deleteVideo)
 
 app.post("/upload-profile-image", profileImageUpload.single('image'), uploadProfileImage);
 
