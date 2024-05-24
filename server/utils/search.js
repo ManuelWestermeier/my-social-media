@@ -14,9 +14,8 @@ export default function search(req, res) {
     }
 
     const results = []
-
-    if (req.query.search == "") {
-        return videoSearchItems.slice(0, 5)
+    if (req.query.search.replace(/ /g, "") == "") {
+        return res.json(videoSearchItems.slice(0, 5))
     }
 
     const searchWords = [...new Set(req.query.search.toLowerCase().split(" "))]
