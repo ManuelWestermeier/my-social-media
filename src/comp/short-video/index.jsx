@@ -26,6 +26,8 @@ function ShortVideo({ id, videoRef }) {
 
   useEffect(() => {
     try {
+      if (localStorage.getItem(`viewed-${id}`)) return;
+      localStorage.setItem(`viewed-${id}`, true);
       fetch(getRequestUrl("/add-view", { id }));
     } catch (error) {}
   }, []);
