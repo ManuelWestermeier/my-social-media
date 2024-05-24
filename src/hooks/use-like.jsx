@@ -30,7 +30,12 @@ function useLike({ userData, setUserData, setVideoData, auth, videoId }) {
     });
 
     try {
-      await fetch(getRequestUrl("/toggle-like-video", { ...auth }));
+      const res = await fetch(
+        getRequestUrl("/toggle-like-video", { ...auth, videoId })
+      );
+      if (!res.ok) {
+        alert("like error " + (await res.text()));
+      }
     } catch (error) {}
   };
 
