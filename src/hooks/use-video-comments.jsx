@@ -23,7 +23,8 @@ function useVideoComments(videoId, auth) {
   return [
     comments,
     async (newComment) => {
-      setComments((old) => [newComment, ...old]);
+      setComments((old) => [{ text: newComment, auth: auth.user }, ...old]);
+
       try {
         const res = await fetch(
           getRequestUrl("/add-comment", { ...auth, text: newComment, videoId })
