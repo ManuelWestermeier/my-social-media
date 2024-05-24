@@ -23,3 +23,12 @@
     object-fit: contain;
     border-radius: 17.5px;
 }
+
+.video-comments-section {
+    max-height: calc(100dvh - 320px);
+    overflow-y: auto;
+}
+
+.video-comments-section::-webkit-scrollbar {
+    display: none;
+}

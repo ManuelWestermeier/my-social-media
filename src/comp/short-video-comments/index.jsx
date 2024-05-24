@@ -64,7 +64,7 @@ function VideoComments({ id, auth, userData, setUserData }) {
 
   return (
     <>
-      <div>
+      <div className="video-comments-section">
         <Comments />
       </div>
       <form
