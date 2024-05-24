@@ -1,15 +1,31 @@
 import { useSearchParams } from "react-router-dom";
-import "./index.css"
+import "./index.css";
+import { useState } from "react";
+import getRequestUrl from "../../utils/get-request-url";
+import UserProfileVideoList from "../../comp/user-profile-video-list";
 
 function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
+  const [results, setResults] = useState(false);
 
   return (
-    <div>
-      <h2>Search</h2>
+    <div className="p10">
+      <h2 className="p10">Search</h2>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
+          try {
+            const res = await fetch(
+              getRequestUrl("/search", { search: searchParams.get("q") })
+            );
+            if (!res.ok) {
+              alert("error : cant search");
+            }
+
+            setResults(await res.json());
+          } catch (error) {
+            alert("error : cant search");
+          }
         }}
         className="search-form"
       >
@@ -33,6 +49,12 @@ function SearchPage() {
           </svg>
         </button>
       </form>
+      {results && (
+        <div className="results">
+          {results.length == 0 && <p>No Results</p>}
+          <UserProfileVideoList videos={results} />
+        </div>
+      )}
     </div>
   );
 }

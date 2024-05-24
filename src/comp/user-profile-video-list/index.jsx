@@ -4,8 +4,8 @@ import useVideoViews from "../../hooks/use-video-views";
 import useVideoData from "../../hooks/use-video-data";
 
 function VideoElem({ videoId }) {
-  const videoData = useVideoData(videoId);
-  const videoViews = useVideoViews(videoId)
+  const [videoData] = useVideoData(videoId);
+  const videoViews = useVideoViews(videoId);
 
   return (
     <Link to={`/vid/${videoId}`} className="video">

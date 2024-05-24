@@ -18,6 +18,10 @@ export default function search(req, res) {
     const searchWords = [...new Set(req.query.search.toLowerCase().split(" "))]
 
     for (let index = 0; index < videoSearchItems.length; index++) {
+        if (results.length == 100) {
+            return res.json(results)
+        }
+
         var include = true
 
         for (let wordIndex = 0; wordIndex < searchWords.length; wordIndex++) {
