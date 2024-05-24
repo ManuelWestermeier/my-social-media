@@ -20,7 +20,12 @@ export default function deleteVideo(req, res) {
         return res.status(400).send("video auth is not you");
     }
 
-    fs.unlinkSync(videoPath)
+    // Remove video directory and its contents
+    try {
+        fs.rmSync(videoPath, { recursive: true, force: true });
+    } catch (error) {
+        return res.status(500).send(`Error deleting video directory: ${error.message}`);
+    }
 
     //delete video from user data
     const userDataPath = `data/user/${user}/data.txt`
