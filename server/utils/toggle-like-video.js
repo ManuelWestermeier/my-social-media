@@ -1,7 +1,7 @@
 import { login } from "./login.js";
 import fs from "fs";
 
-export default function toggleLlikeVideo(req, res) {
+export default function toggleLikeVideo(req, res) {
     if (!login(req)[0]) {
         return res.status(400).send("auth error");
     }
@@ -13,6 +13,9 @@ export default function toggleLlikeVideo(req, res) {
     const userData = JSON.parse(fs.readFileSync(userDataPath, 'utf8'))
 
     const videDataPath = `data/upload/${videoId}/data.txt`
+    if (!fs.existsSync(videDataPath)) {
+        return res.status(400).send("video not found")
+    }
     const videoData = JSON.parse(fs.readFileSync(videDataPath, 'utf8'));
 
     if (userData.liked.includes(videoId)) {

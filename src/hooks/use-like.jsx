@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import getRequestUrl from "../utils/get-request-url";
 
 function useLike({ userData, setUserData, setVideoData, auth, videoId }) {
   const navigate = useNavigate();
@@ -36,7 +37,9 @@ function useLike({ userData, setUserData, setVideoData, auth, videoId }) {
       if (!res.ok) {
         alert("like error " + (await res.text()));
       }
-    } catch (error) {}
+    } catch (error) {
+        alert(error)
+    }
   };
 
   return [liked, likeVideo];
