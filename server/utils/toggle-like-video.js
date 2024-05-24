@@ -12,7 +12,7 @@ export default function toggleLikeVideo(req, res) {
     const userDataPath = `data/user/${user}/data.txt`
     const userData = JSON.parse(fs.readFileSync(userDataPath, 'utf8'))
 
-    const videDataPath = `data/upload/${videoId}/data.txt`
+    const videDataPath = `data/uploads/${videoId}/data.txt`
     if (!fs.existsSync(videDataPath)) {
         return res.status(400).send("video not found")
     }
