@@ -42,7 +42,13 @@ function VidPage({ auth, userData, setUserData }) {
   return (
     <div className="videos" ref={containerRef}>
       {videoIds.map((id) => (
-        <VideoView auth={auth} key={id} id={id} />
+        <VideoView
+          userData={userData}
+          setUserData={setUserData}
+          auth={auth}
+          key={id}
+          id={id}
+        />
       ))}
     </div>
   );

@@ -1,0 +1,9 @@
+.liked {
+    animation: liked 1s ease-in-out;
+}
+
+@keyframes liked {
+    50% {
+        transform: scale(5) rotate(1deg);
+    }
+}

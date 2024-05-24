@@ -1,6 +1,39 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import "./index.css";
 
-function VideoData({ videoData, commentPageRef }) {
+function VideoData({
+  videoData,
+  videoId,
+  commentPageRef,
+  userData,
+  setUserData,
+  setVideoData,
+}) {
+  const liked = useMemo(() => {
+    return userData?.liked?.includes?.(videoId);
+  }, [userData]);
+
+  const likeVideo = (e) => {
+    e.target.classList.toggle("liked");
+
+    setUserData((old) => {
+      return {
+        ...old,
+        liked: old.liked.includes(videoId)
+          ? old.liked.filter((id) => id !== videoId)
+          : [...old.liked, videoId],
+      };
+    });
+
+    setVideoData((old) => {
+      return {
+        ...old,
+        likes: !liked ? old.likes + 1 : old.likes - 1,
+      };
+    });
+  };
+
   return (
     videoData && (
       <>
@@ -11,7 +44,12 @@ function VideoData({ videoData, commentPageRef }) {
           </Link>
           <p>{videoData?.title}</p>
           <p>
-            <button>{videoData?.likes}👍</button>
+            <button
+              onClick={likeVideo}
+              className={"subscribe-btn" + (liked ? " liked" : " not-active")}
+            >
+              {videoData?.likes}👍
+            </button>
             <button
               onClick={(e) =>
                 commentPageRef.current?.scrollIntoView({

@@ -20,7 +20,7 @@ function useVideoData(id) {
     }
   }, []);
 
-  return videoData;
+  return [videoData, setVideoData];
 }
 
 export default useVideoData;

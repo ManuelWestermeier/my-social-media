@@ -6,12 +6,12 @@ import useVideoData from "../../hooks/use-video-data";
 import VideoData from "../video-data";
 import ShortVideoComments from "../short-video-comments";
 
-function VideoView({ id, auth }) {
+function VideoView({ id, auth, userData, setUserData }) {
   const videoRef = useRef();
   const commentPageRef = useRef();
   const videoSectionRef = useRef();
   const navigate = useNavigate();
-  const videoData = useVideoData(id);
+  const [videoData, setVideoData] = useVideoData(id);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -46,7 +46,14 @@ function VideoView({ id, auth }) {
     <div className="video-view">
       <div ref={videoSectionRef}>
         <ShortVideo id={id} videoRef={videoRef} />
-        <VideoData videoData={videoData} commentPageRef={commentPageRef} />
+        <VideoData
+          setVideoData={setVideoData}
+          userData={userData}
+          setUserData={setUserData}
+          videoId={id}
+          videoData={videoData}
+          commentPageRef={commentPageRef}
+        />
       </div>
       <div ref={commentPageRef}>
         <ShortVideoComments

@@ -5,7 +5,7 @@ import useVideoComments from "../../hooks/use-video-comments";
 import { Link } from "react-router-dom";
 import TextView from "../../utils/text-view";
 
-function VideoComments({ id, auth }) {
+function VideoComments({ id, auth, userData, setUserData }) {
   const [videoComments, pushComment, navigate] = useVideoComments(id);
 
   function Comments() {
@@ -56,7 +56,14 @@ function VideoComments({ id, auth }) {
   );
 }
 
-function ShortVideoComments({ id, videoData, videoSectionRef, auth }) {
+function ShortVideoComments({
+  id,
+  videoData,
+  videoSectionRef,
+  auth,
+  userData,
+  setUserData,
+}) {
   const videoViews = useVideoViews(id);
   const [viewComments, setViewComments] = useState(false);
 
