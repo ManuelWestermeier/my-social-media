@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { videos } from "./random-video.js";
 import { videoSearchItems } from "./search.js";
 
 export default function uploadVideo(req, res) {
@@ -29,7 +28,6 @@ export default function uploadVideo(req, res) {
     fs.writeFileSync(path.join(req.uploaddir, "comments.txt"), "[]", "utf-8")
 
     //push the videodata
-    videos.push(req.id)
     videoSearchItems.push({
         id: req.id,
         search: (videoData.title + " " + videoData.description).toLocaleLowerCase()
