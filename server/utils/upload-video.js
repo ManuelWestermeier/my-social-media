@@ -20,6 +20,7 @@ export default function uploadVideo(req, res) {
         likes: 0,
         title: req.query.title,
         date: new Date().toLocaleDateString(),
+        description: req.query?.description || ""
     }
 
     fs.writeFileSync(path.join(req.uploaddir, "data.txt"), JSON.stringify(videoData), "utf-8")
