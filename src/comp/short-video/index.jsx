@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import "./index.css";
+import getRequestUrl from "../../utils/get-request-url";
 
 function ShortVideo({ id, videoRef }) {
   const handlePlayPauseToggle = (e) => {
@@ -21,6 +23,10 @@ function ShortVideo({ id, videoRef }) {
       }
     } catch (error) {}
   };
+
+  useEffect(() => {
+    fetch(getRequestUrl("/add-view", { id }));
+  }, []);
 
   return (
     <div className="video-controlls">
