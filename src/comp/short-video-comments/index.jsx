@@ -4,9 +4,11 @@ import "./index.css";
 import useVideoComments from "../../hooks/use-video-comments";
 import { Link } from "react-router-dom";
 import TextView from "../../utils/text-view";
+import getRequestUrl from "../../utils/get-request-url";
 
 function VideoComments({ id, auth, userData, setUserData }) {
-  const [videoComments, pushComment, navigate] = useVideoComments(id, auth);
+  const [videoComments, pushComment, navigate, deleteComment] =
+    useVideoComments(id, auth);
 
   function Comments() {
     if (!videoComments) {
@@ -17,7 +19,7 @@ function VideoComments({ id, auth, userData, setUserData }) {
       return <p>No comments yet</p>;
     }
 
-    const me = auth?.user;
+    const me = auth;
 
     return videoComments.map(({ auth, text }) => (
       <div className="video-comment" key={`${auth}@${text}`}>
@@ -25,12 +27,22 @@ function VideoComments({ id, auth, userData, setUserData }) {
         <Link to={`/profile/${auth}`} target="_blank">
           <img src={`${apiUrl}/img/profile/${auth}`} alt="user-profile" />
           <i>@{auth}</i>
-          {auth == me && (
+          {auth == me?.user && (
             <button
               style={{ marginLeft: "auto" }}
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                alert(id)
+                try {
+                  const res = await fetch(
+                    getRequestUrl("/delete-comment", { ...me, text, id })
+                  );
+                  if (!res.ok) {
+                    return alert("error deleting");
+                  }
+                  deleteComment(text);
+                } catch (error) {
+                  alert(error);
+                }
               }}
             >
               Delete Comment

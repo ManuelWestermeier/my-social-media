@@ -40,6 +40,13 @@ function useVideoComments(videoId, auth) {
       }
     },
     navigate,
+    (text) => {
+      setComments((old) =>
+        old.filter(
+          (comment) => !(comment.text == text && comment.auth == auth.user)
+        )
+      );
+    },
   ];
 }
 

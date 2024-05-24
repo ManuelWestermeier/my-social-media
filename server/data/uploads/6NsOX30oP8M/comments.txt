@@ -1,1 +1,1 @@
-[{"auth":"x","text":"XXX"},{"auth":"x","text":"Hallo"}]
+[{"auth":"admin","text":"Hello"},{"auth":"x","text":"XXX"},{"auth":"x","text":"Hallo"}]
