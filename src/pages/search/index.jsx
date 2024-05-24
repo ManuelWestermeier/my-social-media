@@ -10,6 +10,7 @@ function SearchPage() {
 
   return (
     <div className="p10">
+      <center>
       <h2 className="p10">Search</h2>
       <form
         onSubmit={async (e) => {
@@ -49,6 +50,7 @@ function SearchPage() {
           </svg>
         </button>
       </form>
+      </center>
       {results && (
         <div className="results">
           {results.length == 0 && <p>No Results</p>}
