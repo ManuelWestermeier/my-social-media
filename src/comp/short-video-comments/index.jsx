@@ -19,7 +19,7 @@ function VideoComments({ id, auth, userData, setUserData }) {
 
     return videoComments.map(({ auth, text }) => (
       <div className="video-comment" key={`${auth}@${text}`}>
-        <p>{text}</p>
+        <TextView text={text} />
         <Link to={`/profile/${auth}`} target="_blank">
           <img src={`${apiUrl}/img/profile/${auth}`} alt="" />
           <i>@{auth}</i>
