@@ -75,7 +75,7 @@ function ProfilePage({ userData, setUserData, auth }) {
           setUserData((old) => {
             return {
               ...old,
-              videos: old.videos.filter((v) => v.id !== id),
+              videos: old.videos.filter((v) => v != id),
             };
           })
         }

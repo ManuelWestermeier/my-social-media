@@ -8,6 +8,10 @@ export var videoSearchItems = fs.readdirSync("data/uploads").map(id => {
     }
 })
 
+export function setVideoSearchItems(_new) {
+    videoSearchItems = _new
+}
+
 export default function search(req, res) {
     if (!req.query.search) {
         return res.json([])
