@@ -39,3 +39,9 @@
 .profile-video-list .video:hover {
     box-shadow: 0 0 20px -2px var(--a);
 }
+
+.profile-video-list .video .delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

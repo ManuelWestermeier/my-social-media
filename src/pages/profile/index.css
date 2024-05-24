@@ -7,7 +7,7 @@
 
 .profile-page textarea {
     width: calc(100% - 35px);
-    height: max-content;
+    height: 110px;
     resize: none;
 }
 

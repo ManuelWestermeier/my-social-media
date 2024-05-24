@@ -1,21 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Loading from "../../comp/loading";
 import { Link } from "react-router-dom";
 import "./index.css";
 import getRequestUrl from "../../utils/get-request-url";
 import uploadProfileImage from "../../utils/upload-porfile-image";
+import VideManager from "../../comp/vide-manager";
 
 function ProfilePage({ userData, setUserData, auth }) {
   const [isLoading, setIsLoading] = useState(false);
-
-  const textAreaRef = useRef();
-
-  useEffect(() => {
-    try {
-      const textarea = textAreaRef.current;
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    } catch (error) {}
-  }, [textAreaRef]);
 
   if (!userData || isLoading) {
     return <Loading />;
@@ -40,7 +32,7 @@ function ProfilePage({ userData, setUserData, auth }) {
           })
         );
       } catch (error) {
-        log(error);
+        alert(error);
       }
     };
   };
@@ -74,19 +66,11 @@ function ProfilePage({ userData, setUserData, auth }) {
         <Link to={userUrl}>{userUrl}</Link>
       </p>
       <textarea
-        ref={textAreaRef}
         value={userDescription}
         title="max:1500 characteracters"
         onChange={onValueChange("description")}
       ></textarea>
-      <div className="footer">
-        <Link className="btn" to="/abonnements">
-          Abbonements
-        </Link>
-        <Link className="btn" to="/upload">
-          Upload new video
-        </Link>
-      </div>
+      <VideManager auth={auth} videos={userData?.videos} />
     </div>
   );
 }

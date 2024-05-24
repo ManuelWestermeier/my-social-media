@@ -75,7 +75,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         </NavLink>
         <NavLink to="videos">Videos</NavLink>
       </div>
-      <div>
+      <div className="content">
         {underPath == "description" ? (
           <Description userDescription={userDescription} />
         ) : underPath == "videos" ? (

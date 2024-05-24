@@ -1,0 +1,9 @@
+.video-manager {
+    overflow-y: auto;
+    max-height: calc(100dvh - 350px);
+    padding: 10px;
+}
+
+.video-manager::-webkit-scrollbar {
+    display: none;
+}

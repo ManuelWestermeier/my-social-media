@@ -19,3 +19,12 @@
     background-color: var(--a);
     color: var(--b);
 }
+
+.profile-page .content {
+    max-height: calc(100dvh - 240px);
+    overflow-y: auto;
+}
+
+.profile-page .content::-webkit-scrollbar {
+    display: none;
+}
