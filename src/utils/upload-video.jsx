@@ -36,7 +36,6 @@ export default function uploadVideo(
     xhr.onload = () => {
       setUploadingState(false);
       if (xhr.status === 200) {
-        log(JSON.parse(xhr.responseText));
         const id = JSON.parse(xhr.responseText).id;
 
         setError("Video uploaded successfully!");
