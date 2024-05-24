@@ -14,3 +14,13 @@
     padding: 10px;
     border: 2px solid var(--a);
 }
+
+.results {
+    overflow-y: scroll;
+    height: calc(100dvh - 190px);
+    padding: 10px 0;
+}
+
+.results::-webkit-scrollbar {
+    display: none;
+}
