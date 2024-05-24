@@ -21,7 +21,7 @@ function VideoComments({ id, auth, userData, setUserData }) {
       <div className="video-comment" key={`${auth}@${text}`}>
         <TextView text={text} />
         <Link to={`/profile/${auth}`} target="_blank">
-          <img src={`${apiUrl}/img/profile/${auth}`} alt="" />
+          <img src={`${apiUrl}/img/profile/${auth}`} alt="user-profile" />
           <i>@{auth}</i>
         </Link>
       </div>
