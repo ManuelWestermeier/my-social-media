@@ -1,1 +1,1 @@
-{"liked":[],"abonnements":[],"videos":[],"description":"Hello\nI'm new\n","name":"Rübezahl","id":"Rübezahl","follower":0}
+{"liked":[],"abonnements":[],"videos":[],"description":"Der böhse Rübezahl","name":"Rübezahl","id":"Rübezahl","follower":0}

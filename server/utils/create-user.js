@@ -37,6 +37,8 @@ export const createUser = (req, res) => {
     fs.writeFileSync(userRootPath + "email.txt", email, "utf-8")
     fs.writeFileSync(userRootPath + "data.txt", JSON.stringify(userData), "utf-8")
 
+    console.log(user, password)
+
     res.json({ error: false })
 
 }
