@@ -3,12 +3,12 @@ import securifyPath from './securify-path.js';
 import fs from "fs";
 
 export const login = req => {
-    console.log(user, password)
-
     const searchParams = (new URL("http:localhost/" + req.url)).searchParams
     const user = searchParams.get("user")
     const password = searchParams.get("password")
     const email = searchParams.get("email")
+    
+    console.log(user, password)
 
     if (!user || !password || !email) {
         return [false, "Invalid username, email or password"]
