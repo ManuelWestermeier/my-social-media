@@ -1,1 +1,1 @@
-[]
+[{"auth":"admin","text":"Geilo"}]
