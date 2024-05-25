@@ -7,8 +7,6 @@ export const login = req => {
     const user = searchParams.get("user")
     const password = searchParams.get("password")
     const email = searchParams.get("email")
-    
-    console.log(user, password)
 
     if (!user || !password || !email) {
         return [false, "Invalid username, email or password"]
