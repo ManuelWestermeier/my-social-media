@@ -1,1 +1,1 @@
-{"auth":"admin","likes":0,"title":"GamePlay","date":"25.5.2024","description":"GamePlay for my old Game"}
+{"auth":"admin","likes":1,"title":"GamePlay","date":"25.5.2024","description":"GamePlay for my old Game"}
