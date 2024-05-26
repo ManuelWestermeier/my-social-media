@@ -8,36 +8,37 @@ function useInfiniteScroll() {
   const containerRef = useRef(null);
 
   const loadMoreVideos = useCallback(async () => {
-    let nextRandomVideoId;
-    do {
-      nextRandomVideoId = await getRandomVideo();
-    } while (videoIds.includes(nextRandomVideoId));
+    let nextRandomVideoId = await getRandomVideo();
+
+    if (videoIds.includes(nextRandomVideoId)) {
+      return loadMoreVideos();
+    }
 
     setVideoIds((prevVideoList) => [...prevVideoList, nextRandomVideoId]);
   }, [videoIds]);
 
+  const containerChildren = containerRef?.current?.children
+  const lastConttainerChild = containerChildren?.[containerChildren?.length - 1]
+
   useEffect(() => {
-    if (!containerRef.current) {
+    if (!lastConttainerChild) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreVideos();
-        }
-      },
-      { threshold: 0.5 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        log("vidoble");
+        loadMoreVideos();
+      }
+    });
 
-    const currentRef = containerRef.current;
-    observer.observe(currentRef);
+    observer.observe(lastConttainerChild);
 
     return () => {
-      observer.unobserve(currentRef);
+      observer.unobserve(lastConttainerChild);
       observer.disconnect();
     };
-  }, [containerRef, loadMoreVideos]);
+  }, [lastConttainerChild, loadMoreVideos]);
 
   return [containerRef, videoIds];
 }
