@@ -17,8 +17,9 @@ function useInfiniteScroll() {
     setVideoIds((prevVideoList) => [...prevVideoList, nextRandomVideoId]);
   }, [videoIds]);
 
-  const containerChildren = containerRef?.current?.children
-  const lastConttainerChild = containerChildren?.[containerChildren?.length - 1]
+  const containerChildren = containerRef?.current?.children;
+  const lastConttainerChild =
+    containerChildren?.[containerChildren?.length - 1];
 
   useEffect(() => {
     if (!lastConttainerChild) {
@@ -27,7 +28,6 @@ function useInfiniteScroll() {
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        log("vidoble");
         loadMoreVideos();
       }
     });
