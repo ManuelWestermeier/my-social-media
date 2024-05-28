@@ -1,1 +1,1 @@
-{"auth":"admin","likes":0,"title":"Edit Stift","date":"25.5.2024","description":"Ha Doch ein Hase"}
+{"auth":"admin","likes":1,"title":"Edit Stift","date":"25.5.2024","description":"Ha Doch ein Hase"}
