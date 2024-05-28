@@ -79,7 +79,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         {underPath == "description" ? (
           <Description userDescription={userDescription} />
         ) : underPath == "videos" ? (
-          <UserProfileVideoList videos={userData.videos} />
+          <UserProfileVideoList videos={userData.videos.reverse()} />
         ) : null}
       </div>
     </div>

@@ -80,7 +80,7 @@ function ProfilePage({ userData, setUserData, auth }) {
           })
         }
         auth={auth}
-        videos={userData?.videos}
+        videos={userData?.videos?.reverse()}
       />
     </div>
   );
