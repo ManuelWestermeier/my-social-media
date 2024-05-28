@@ -40,15 +40,19 @@ export default function uploadVideo(
 
         setError("Video uploaded successfully!");
 
-        setTimeout(() => navigate(`/vid/${id}`), 1000);
+        setTimeout(() => navigate(`/vid/${id}`), 500);
       } else {
-        setError("Error uploading video.");
+        setError(
+          "Error uploading video. Mybe your cover isn't a .png or .jpg or your video isn't a .mp4 file."
+        );
       }
     };
 
     xhr.onerror = () => {
       setUploadingState(false);
-      setError("Error uploading video.");
+      setError(
+        "Error uploading video. Mybe your cover isn't a .png or .jpg or your video isn't a .mp4 file."
+      );
     };
 
     xhr.send(formData);
