@@ -27,6 +27,7 @@ function UserPage({ authUserData, setAuthUserData, auth }) {
         .then((res) => res.json())
         .then((jsonData) => {
           if (!jsonData) navigate("/abonnements", { replace: true });
+          jsonData.videos.reverse();
           setUserData(jsonData);
         });
     } catch (error) {}
